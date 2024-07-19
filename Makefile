@@ -1,6 +1,7 @@
 
 NAME = fdf
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS =  -g
+# CFLAGS = -Wall -Wextra -Werror -g
 
 MLX_DIR = ./MLX42
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast

@@ -50,17 +50,27 @@ t_key_map keyboard[] = {
 
 void keyboard_hook(mlx_key_data_t keydata, void *param)
 {
+	t_map	*map;
 	size_t	i;
-	if (!param)
-		puts("WHATTT?");
 
-	i = 0;
-	while (i < sizeof (keyboard) / sizeof (keyboard[0]))
+	map = param;
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
-		if (keydata.key == keyboard[i].key_act && keydata.action == MLX_PRESS)
-			puts(keyboard[i].key_val);
-		i++;
+		mlx_close_window(map->mlx);
 	}
+	else
+	{
+		i = 0;
+		while (i < sizeof (keyboard) / sizeof (keyboard[0]))
+		{
+			if (keydata.key == keyboard[i].key_act && keydata.action == MLX_PRESS)
+				puts(keyboard[i].key_val);
+			i++;
+		}
+	}
+
 }
+
+
 
 
