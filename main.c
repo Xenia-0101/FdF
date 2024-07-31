@@ -13,6 +13,14 @@
 // 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);	//	TODO: remove printf
 // }
 
+void ft_put_points(t_map *map, int x, int y, int z)
+{
+	double px = x * cos(120) + y * cos(122) + z * cos(118);
+	double py = x * sin(120) + y * sin(122) + z * sin(118);
+	// mlx_put_pixel(map->img, px, py, 0);
+	printf("\t%f %f\n", px, py);
+}
+
 int32_t main(void)
 {
 	t_map *map;
@@ -30,16 +38,15 @@ int32_t main(void)
 	// set every pixel to white
 	memset(img->pixels, 255, img->width * img->height * sizeof (int32_t));
 
+	ft_put_points(map, 50, 50, 50);
+	ft_put_points(map, 200, 50, 50);
+	ft_put_points(map, 50, 200, 50);
+	ft_put_points(map, 200, 200, 50);
+	ft_put_points(map, 50, 50, 200);
+	ft_put_points(map, 200, 50, 200);
+	ft_put_points(map, 50, 200, 200);
+	ft_put_points(map, 200, 200, 200);
 
-	int x = 0;
-	int y = 0;
-
-	while (x < 100)
-	{
-		mlx_put_pixel(img, x, y, 0);
-		x++;
-		y = 2*x;
-	}
 
 
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
