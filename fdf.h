@@ -34,6 +34,8 @@ typedef struct s_line
 
 void keyboard_hook(mlx_key_data_t keydata, void *param);
 void ft_bresenham(t_map *map, int start[2], int end[2]);
-void ft_put_points(t_map *map, int p[3]);
+void ft_bresenham1(t_map *map, int start[3], int end[3]);
+void ft_put_points_3d(t_map *map, int p[3]);
+void ft_put_points_2d(t_map *map, int p[2]);
 
 #endif
