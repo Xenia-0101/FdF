@@ -8,10 +8,9 @@
 # include <math.h>
 # include <string.h>
 
-# include "./MLX42/include/MLX42/MLX42.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 
-# define SGN(_x) ((_x) < 0 ? -1 : \
-				((_x) > 0 ? 1 : 0))
+
 typedef struct s_map
 {
 	mlx_t		*mlx;

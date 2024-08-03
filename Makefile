@@ -1,4 +1,3 @@
-
 NAME = fdf
 CFLAGS =  -g
 # CFLAGS = -Wall -Wextra -Werror -g
@@ -9,13 +8,20 @@ MLX_LIB = $(MLX_DIR)/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast
 GCC = -DCMAKE_C_COMPILER=/usr/bin/gcc
 GPP = -DCMAKE_CXX_COMPILER=/usr/bin/g++
 
-HEADER = \
+HEADER = -I ./includes/
 
 RM = rm -rf
 CC = cc
 AR = ar rc
 
-SOURCES := $(shell find .  -maxdepth 1 -name '*.c')
+# TODO: move main.c to the root of the project
+SOURCES := \
+			main.c\
+			src/ft_bresenham.c\
+			src/ft_put_points.c\
+			src/keyboard_hook.c\
+			src/test.c\
+
 # SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -43,3 +49,5 @@ fclean: clean
 re: fclean all
 
 # .PHONY: all clean fclean re libmlx
+
+# ls *.c | sed 's/$/\\/'

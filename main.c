@@ -10,13 +10,6 @@
 // #define SGN(_x) ((_x) >= 0 || -1)
 
 
-// static void ft_hook(void *param)
-// {
-// 	const mlx_t *mlx = param;
-
-// 	printf("WIDTH: %d | HEIGHT: %d\n", mlx->width, mlx->height);	//	TODO: remove printf
-// }
-
 int *ft_transform_2d(int p3[3], int p2[2])
 {
 	p2[0] = p3[0] * cos(120) + p3[1] * cos(122) + p3[2] * cos(118);
@@ -24,7 +17,7 @@ int *ft_transform_2d(int p3[3], int p2[2])
 	return (p2);
 }
 
-int32_t main(void)
+int32_t main(int argc, char **argv)
 {
 	t_map map;
 	mlx_t *mlx = mlx_init(800, 600, "MLX42 Library", true);
@@ -72,17 +65,8 @@ int32_t main(void)
 	ft_transform_2d(F, FF);
 	ft_transform_2d(G, GG);
 	ft_transform_2d(H, HH);
-	// printf("A: %d %d\n", AA[0], AA[1]);
-	// printf("B: %d %d\n", BB[0], BB[1]);
-	// printf("C: %d %d\n", CC[0], CC[1]);
-	// printf("D: %d %d\n", DD[0], DD[1]);
-	// printf("E: %d %d\n", EE[0], EE[1]);
-	// printf("F: %d %d\n", FF[0], FF[1]);
-	// printf("G: %d %d\n", GG[0], GG[1]);
-	// printf("H: %d %d\n", HH[0], HH[1]);
 
 	// DRAW THE POINTS TO THE MAP
-
 
 	ft_put_points_2d(&map, test);
 	ft_put_points_2d(&map, AA);
@@ -110,6 +94,7 @@ int32_t main(void)
 	ft_bresenham(&map, FF, BB);
 	ft_bresenham(&map, GG, CC);
 	ft_bresenham(&map, HH, DD);
+
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_key_hook(map.mlx, &keyboard_hook, &map);
