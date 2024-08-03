@@ -28,7 +28,7 @@ Description
 	from the beginning and the end of the string.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 static int	char_in_set(char a, const char *set)
 {

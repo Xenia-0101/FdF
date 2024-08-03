@@ -21,7 +21,7 @@ RETURN VALUE
 	character does not occur in the given memory area.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

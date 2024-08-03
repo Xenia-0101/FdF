@@ -9,6 +9,7 @@
 # include <string.h>
 
 # include "../MLX42/include/MLX42/MLX42.h"
+# include "../libft/include/libft.h"
 
 
 typedef struct s_map

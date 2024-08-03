@@ -6,11 +6,11 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 12:24:30 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/03 18:54:16 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:03:35 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 char	*ft_calloc_gnl(int count, int size)
 {

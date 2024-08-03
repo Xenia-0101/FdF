@@ -30,7 +30,7 @@ https://www.imperialviolet.org/2016/06/26/nonnull.html
  the behavior is undefined."
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

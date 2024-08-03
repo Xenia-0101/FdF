@@ -22,7 +22,7 @@
 	check the arguments before the call, or test the function return value.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {

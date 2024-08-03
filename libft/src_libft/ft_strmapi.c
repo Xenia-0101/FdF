@@ -32,7 +32,7 @@
 		from successive applications of ’f’.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

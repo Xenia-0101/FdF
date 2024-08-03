@@ -28,7 +28,7 @@
 		of ’s1’ and ’s2’.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 // What should happen if NULL?
 

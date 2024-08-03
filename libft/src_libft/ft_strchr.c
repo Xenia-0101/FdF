@@ -23,7 +23,7 @@ part of the string, so that if c is specified as '\0', these
 functions return a pointer to the terminator.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

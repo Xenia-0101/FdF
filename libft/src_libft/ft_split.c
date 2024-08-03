@@ -28,7 +28,7 @@
 		character ’c’ as a delimiter.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 // void	free_arr(char **res, size_t count)
 // {

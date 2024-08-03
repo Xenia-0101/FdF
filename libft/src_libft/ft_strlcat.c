@@ -21,7 +21,7 @@ than or equal to size, data loss occurred. If data loss matters, the caller must
 either check the arguments before the call, or test the function return value.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

@@ -66,25 +66,27 @@ OBJ = ${SRC:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 OBJ_GNL = ${SRC_GNL:.c=.o}
 
-all: ${NAME} gnl
+all: ${NAME} 
 
 ${NAME}: ${OBJ}
 	${AR} ${NAME} ${OBJ}
+
+bonus: ${OBJ_BONUS}
+	${AR} ${NAME} ${OBJ_BONUS}
+	@echo "libft bonus functions compiled"
 
 gnl: ${OBJ_GNL}
 	${AR} ${NAME} ${OBJ_GNL}
 	@echo "get_next_line compiled"
 
 clean:
-	${RM} ${OBJ} ${OBJ_BONUS}
+	${RM} ${OBJ} ${OBJ_BONUS} ${OBJ_GNL}
 
 fclean: clean
 	${RM} ${NAME}
 
 re: fclean all
 
-bonus: ${OBJ_BONUS}
-	${AR} ${NAME} ${OBJ_BONUS}
 
 # so:
 # 	$(CC) -nostartfiles -fPIC $(CCFLAGS) $(SRCS)

@@ -28,16 +28,16 @@ SRC := \
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./includes/
 
-all: libmlx libft ${NAME}
-	@echo "FdF executable is ready"
+all: libft libmlx ${NAME}
+		@echo "FdF executable is ready"
 
 %.o: %.c
 		@${CC} ${CFLAGS} -c $< $(HEADER) -o $@
 
 ${NAME}: ${OBJ}
-		${CC} -o ${NAME} ${OBJ} ${MLX_LIB}
+		${CC} -o ${NAME} ${OBJ} libft.a ${MLX_LIB}
 
-# *** complile mlx42 *** #
+# *** compile mlx42 *** #
 libmlx:
 	@cmake $(MLX_DIR) ${GCC} ${GPP} -B ${MLX_DIR}/build
 	@make -C ${MLX_DIR}/build -j4
@@ -46,7 +46,7 @@ libmlx:
 # *** compile libft *** #
 libft:
 	@make bonus -C libft
-	@mv $(LIBFT_DIR)/$(LIBFT_NAME) .
+	@cp libft/libft.a ./
 	@echo "libft library is ready"
 
 # *** general rules *** #

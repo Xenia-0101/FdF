@@ -24,7 +24,7 @@ Description
 	Returns the last node of the list.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {

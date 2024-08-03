@@ -6,11 +6,11 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 16:46:33 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/03 18:53:27 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/03 19:03:35 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 char	*read_fd(int fd, char *cont)
 {

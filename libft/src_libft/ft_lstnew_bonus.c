@@ -27,7 +27,7 @@
 		’next’ is initialized to NULL.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 t_list	*ft_lstnew(void *content)
 {

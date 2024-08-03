@@ -22,7 +22,7 @@
 		The memmove() function returns a pointer to dest.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {

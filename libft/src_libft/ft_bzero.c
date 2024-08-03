@@ -16,7 +16,7 @@
 	(bytes containing '\0') to that area.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

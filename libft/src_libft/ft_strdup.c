@@ -17,7 +17,7 @@
 		with malloc(3), and can be freed with free(3).
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 char	*ft_strdup(const char *s)
 {

@@ -26,7 +26,7 @@
 		descriptor.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 static void	ft_putnbr(int n, int fd)
 {

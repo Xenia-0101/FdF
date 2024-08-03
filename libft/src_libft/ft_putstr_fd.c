@@ -26,7 +26,7 @@
 		descriptor.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

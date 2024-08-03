@@ -23,7 +23,7 @@ RETURN VALUE
 	functions return a pointer to the terminator.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {

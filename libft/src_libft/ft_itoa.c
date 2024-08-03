@@ -27,7 +27,7 @@
 		Negative numbers must be handled.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 static int	count_units(int num)
 {

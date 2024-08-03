@@ -21,7 +21,7 @@ RETURN VALUE
 	to be less than, to match, or be greater than s2.
 */
 
-#include "../includes/libft.h"
+#include "../include/libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
