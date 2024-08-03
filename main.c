@@ -64,14 +64,14 @@ int32_t main(void)
 	int HH[2];
 	int test[2] = {235, 395};
 
-	// ft_transform_2d(A, AA);
-	// ft_transform_2d(B, BB);
-	// ft_transform_2d(C, CC);
-	// ft_transform_2d(D, DD);
-	// ft_transform_2d(E, EE);
-	// ft_transform_2d(F, FF);
-	// ft_transform_2d(G, GG);
-	// ft_transform_2d(H, HH);
+	ft_transform_2d(A, AA);
+	ft_transform_2d(B, BB);
+	ft_transform_2d(C, CC);
+	ft_transform_2d(D, DD);
+	ft_transform_2d(E, EE);
+	ft_transform_2d(F, FF);
+	ft_transform_2d(G, GG);
+	ft_transform_2d(H, HH);
 	// printf("A: %d %d\n", AA[0], AA[1]);
 	// printf("B: %d %d\n", BB[0], BB[1]);
 	// printf("C: %d %d\n", CC[0], CC[1]);
@@ -84,49 +84,32 @@ int32_t main(void)
 	// DRAW THE POINTS TO THE MAP
 
 
-	// ft_put_points_2d(&map, test);
-	// ft_put_points_2d(&map, AA);
-	// ft_put_points_2d(&map, BB);
-	// ft_put_points_2d(&map, CC);
-	// ft_put_points_2d(&map, DD);
-	// ft_put_points_2d(&map, EE);
-	// ft_put_points_2d(&map, FF);
-	// ft_put_points_2d(&map, GG);
-	// ft_put_points_2d(&map, HH);
+	ft_put_points_2d(&map, test);
+	ft_put_points_2d(&map, AA);
+	ft_put_points_2d(&map, BB);
+	ft_put_points_2d(&map, CC);
+	ft_put_points_2d(&map, DD);
+	ft_put_points_2d(&map, EE);
+	ft_put_points_2d(&map, FF);
+	ft_put_points_2d(&map, GG);
+	ft_put_points_2d(&map, HH);
 
 	// CONNECT THE POINTS
 
-	// ft_bresenham(&map, AA, BB);
-	// ft_bresenham(&map, AA, DD);
-	// ft_bresenham(&map, CC, DD);
-	// ft_bresenham(&map, DD, AA);
+	ft_bresenham(&map, AA, BB);
+	ft_bresenham(&map, BB, CC);
+	ft_bresenham(&map, CC, DD);
+	ft_bresenham(&map, DD, AA);
 
-	int tt[2] = {20, 20};
-	int t1[2] = {100, 20};
-	int t2[2] = {100, 50};
-	int t3[2] = {100, 100};
-	int t4[2] = {50, 100};
-	int t5[2] = {20, 100};
+	ft_bresenham(&map, EE, FF);
+	ft_bresenham(&map, FF, GG);
+	ft_bresenham(&map, GG, HH);
+	ft_bresenham(&map, HH, EE);
 
-	ft_bresenham(&map, tt, t1);
-	ft_bresenham(&map, tt, t2);
-	ft_bresenham(&map, tt, t3);
-	ft_bresenham(&map, tt, t4);			// incorrect slope
-	ft_bresenham(&map, tt, t5);
-
-	int qq[2] = {120, 120};
-	int q1[2] = {240, 120};
-	int q2[2] = {480, 240};
-	int q3[2] = {480, 480};
-	int q4[2] = {240, 480};
-	int q5[2] = {120, 240};
-
-	ft_bresenham(&map, q1, qq);			// ok
-	ft_bresenham(&map, q2, qq);			// way off and vertical
-	ft_bresenham(&map, q3, qq);			// way off and vertical
-	ft_bresenham(&map, q4, qq);			// way off and horizontal
-	ft_bresenham(&map, q5, qq);			// ok
-
+	ft_bresenham(&map, EE, AA);
+	ft_bresenham(&map, FF, BB);
+	ft_bresenham(&map, GG, CC);
+	ft_bresenham(&map, HH, DD);
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 	mlx_key_hook(map.mlx, &keyboard_hook, &map);

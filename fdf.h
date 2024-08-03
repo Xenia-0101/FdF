@@ -25,8 +25,8 @@ typedef struct s_line
 	int		point[2];
 	int		dx;
 	int		dy;
-	int		xInc;
-	int		yInc;
+	int		dx_sgn;
+	int		dy_sgn;
 	int		slope;
 	int		err;
 	int		errInc;
