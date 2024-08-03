@@ -1,74 +1,90 @@
 NAME = libft.a
+CCFLAGS = -Wall -Werror -Wextra -g
+
+RM = rm -rf
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra
-RM = rm -f
-LIBC = ar rc
+AR = ar rc
 
-SRCS = \
-ft_atoi.c \
-ft_bzero.c \
-ft_calloc.c \
-ft_isalnum.c \
-ft_isalpha.c \
-ft_isascii.c \
-ft_isdigit.c \
-ft_isprint.c \
-ft_itoa.c \
-ft_memchr.c \
-ft_memcmp.c \
-ft_memcpy.c \
-ft_memmove.c \
-ft_memset.c \
-ft_putchar_fd.c \
-ft_putendl_fd.c \
-ft_putnbr_fd.c \
-ft_putstr_fd.c \
-ft_split.c \
-ft_strchr.c \
-ft_strdup.c \
-ft_striteri.c \
-ft_strjoin.c \
-ft_strlcat.c \
-ft_strlcpy.c \
-ft_strlen.c \
-ft_strmapi.c \
-ft_strnstr.c \
-ft_strncmp.c \
-ft_strrchr.c \
-ft_strtrim.c \
-ft_substr.c \
-ft_tolower.c \
-ft_toupper.c \
+LIBFT_DIR = src_libft
 
-SRCS_BONUS = \
-ft_lstadd_back_bonus.c \
-ft_lstadd_front_bonus.c \
-ft_lstclear_bonus.c \
-ft_lstdelone_bonus.c \
-ft_lstiter_bonus.c \
-ft_lstlast_bonus.c \
-ft_lstmap_bonus.c \
-ft_lstnew_bonus.c \
-ft_lstsize_bonus.c \
+GNL_DIR = src_get_next_line
+GNL_NAME = get_next_line.a
 
-OBJS = ${SRCS:.c=.o}
-OBJS_BONUS = ${SRCS_BONUS:.c=.o}
+SRC = \
+		${LIBFT_DIR}/ft_atoi.c \
+		${LIBFT_DIR}/ft_bzero.c \
+		${LIBFT_DIR}/ft_calloc.c \
+		${LIBFT_DIR}/ft_isalnum.c \
+		${LIBFT_DIR}/ft_isalpha.c \
+		${LIBFT_DIR}/ft_isascii.c \
+		${LIBFT_DIR}/ft_isdigit.c \
+		${LIBFT_DIR}/ft_isprint.c \
+		${LIBFT_DIR}/ft_itoa.c \
+		${LIBFT_DIR}/ft_memchr.c \
+		${LIBFT_DIR}/ft_memcmp.c \
+		${LIBFT_DIR}/ft_memcpy.c \
+		${LIBFT_DIR}/ft_memmove.c \
+		${LIBFT_DIR}/ft_memset.c \
+		${LIBFT_DIR}/ft_putchar_fd.c \
+		${LIBFT_DIR}/ft_putendl_fd.c \
+		${LIBFT_DIR}/ft_putnbr_fd.c \
+		${LIBFT_DIR}/ft_putstr_fd.c \
+		${LIBFT_DIR}/ft_split.c \
+		${LIBFT_DIR}/ft_strchr.c \
+		${LIBFT_DIR}/ft_strdup.c \
+		${LIBFT_DIR}/ft_striteri.c \
+		${LIBFT_DIR}/ft_strjoin.c \
+		${LIBFT_DIR}/ft_strlcat.c \
+		${LIBFT_DIR}/ft_strlcpy.c \
+		${LIBFT_DIR}/ft_strlen.c \
+		${LIBFT_DIR}/ft_strmapi.c \
+		${LIBFT_DIR}/ft_strnstr.c \
+		${LIBFT_DIR}/ft_strncmp.c \
+		${LIBFT_DIR}/ft_strrchr.c \
+		${LIBFT_DIR}/ft_strtrim.c \
+		${LIBFT_DIR}/ft_substr.c \
+		${LIBFT_DIR}/ft_tolower.c \
+		${LIBFT_DIR}/ft_toupper.c \
 
-all: ${NAME}
+SRC_BONUS = \
+		${LIBFT_DIR}/ft_lstadd_back_bonus.c \
+		${LIBFT_DIR}/ft_lstadd_front_bonus.c \
+		${LIBFT_DIR}/ft_lstclear_bonus.c \
+		${LIBFT_DIR}/ft_lstdelone_bonus.c \
+		${LIBFT_DIR}/ft_lstiter_bonus.c \
+		${LIBFT_DIR}/ft_lstlast_bonus.c \
+		${LIBFT_DIR}/ft_lstmap_bonus.c \
+		${LIBFT_DIR}/ft_lstnew_bonus.c \
+		${LIBFT_DIR}/ft_lstsize_bonus.c \
 
-${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+SRC_GNL = \
+		${GNL_DIR}/get_next_line.c\
+		${GNL_DIR}/get_next_line_utils.c\
+
+
+OBJ = ${SRC:.c=.o}
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
+OBJ_GNL = ${SRC_GNL:.c=.o}
+
+all: ${NAME} gnl
+
+${NAME}: ${OBJ}
+	${AR} ${NAME} ${OBJ}
+
+gnl: ${OBJ_GNL}
+	${AR} ${NAME} ${OBJ_GNL}
+	@echo "get_next_line compiled"
 
 clean:
-	${RM} ${OBJS} ${OBJS_BONUS}
+	${RM} ${OBJ} ${OBJ_BONUS}
 
 fclean: clean
 	${RM} ${NAME}
 
 re: fclean all
 
-bonus: ${OBJS_BONUS}
-	${LIBC} ${NAME} ${OBJS_BONUS}
+bonus: ${OBJ_BONUS}
+	${AR} ${NAME} ${OBJ_BONUS}
 
 # so:
 # 	$(CC) -nostartfiles -fPIC $(CCFLAGS) $(SRCS)
