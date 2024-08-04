@@ -9,21 +9,103 @@
 #include "fdf.h"
 // #define SGN(_x) ((_x) >= 0 || -1)
 
-void print_arr(char **arr)
+void ft_draw_map(t_glib *glib, t_map *map)
 {
 	int i;
-	i = 0;
+	int j;
+	int point[2];
 
-	while(arr[i])
+	i = 0;
+	printf("%d\n", map->rc);
+	while (i < map->rc)
 	{
-		printf("%s", arr[i]);
+		j = 0;
+		while (j < map->rl)
+		{
+			point[0] = map->coors[i][j].x;
+			point[1] = map->coors[i][j].y;
+			ft_put_points_2d(glib, point);
+			j++;
+		}
+		i++;
+		printf("***%d\n", i);
+	}
+}
+
+void ft_read_map(t_map *map, char *file)
+{
+
+	char *row;
+	char *mapdata;
+	int fd;
+
+	fd = open("./test_maps/42.fdf", O_RDONLY);		// TODO: Change to file name !!
+	row = get_next_line(fd);
+	mapdata = ft_strdup("");
+	map->rl = ft_strlen(row);
+	map->rc = 0;
+
+	while(row != NULL)
+	{
+		mapdata = ft_strjoin_free(mapdata, row);
+		free(row);
+		row = get_next_line(fd);
+		map->rc++;
+	}
+
+	close(fd);
+	// printf("\n%s\n\n", mapdata);
+	// printf("%d\n", map->rc);
+	map->data_s = ft_split(mapdata, '\n');
+	free(mapdata);
+	// printf("%s\n", map->data_s[3]);
+
+	// create an array of coordinates
+	int i = 0;
+	int j;
+	char **vals;
+	map->coors = (t_point **)ft_calloc(map->rc + 1, sizeof (t_point *));
+	if (map->coors == NULL)			// TODO: Error handling
+	{
+		return ;
+	}
+	while (i < map->rc)
+	{
+		vals = ft_split(map->data_s[i], ' ');
+		map->coors[i] = (t_point *)ft_calloc(map->rl + 1, sizeof (t_point));
+		if (map->coors == NULL)		// TODO: Error handling
+		{
+			// TODO: free and exit
+			return ;
+		}
+		j = 0;
+		while (vals[j])
+		{
+			map->coors[i][j].x = j;
+			map->coors[i][j].y = i;
+			map->coors[i][j].z = ft_atoi(vals[j]);
+			j++;
+		}
+		map->rl = j;
 		i++;
 	}
-	printf("\n");
+
+	// printf("%d %d %d\n", map->coors[0][0].x, map->coors[0][0].y, map->coors[0][0].z);
+	// printf("%d %d %d\n", map->coors[1][1].x, map->coors[1][1].y, map->coors[1][1].z);
+	// printf("%d %d %d\n", map->coors[2][2].x, map->coors[2][2].y, map->coors[2][2].z);
+	// printf("%d %d %d\n", map->coors[3][3].x, map->coors[3][3].y, map->coors[3][3].z);
+	// printf("%d %d %d\n", map->coors[4][4].x, map->coors[4][4].y, map->coors[4][4].z);
+	// printf("%d %d %d\n", map->coors[7][10].x, map->coors[7][10].y, map->coors[7][10].z);
+
+	// print points to the map in 2d
+
+
 }
 int32_t main(int argc, char **argv)
 {
-	t_map map;
+	t_glib glib;
+	t_map	map;
+
 	mlx_t *mlx = mlx_init(800, 600, "MLX42 Library", true);
 	if (!mlx)
 		printf("Library not created\n");	//	TODO: remove printf
@@ -33,40 +115,17 @@ int32_t main(int argc, char **argv)
 	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
 		printf("Image not created\n");	//	TODO: remove printf
 
-	map.mlx = mlx;
-	map.img = img;
+	glib.mlx = mlx;
+	glib.img = img;
 	// set every pixel to white
 	memset(img->pixels, 255, img->width * img->height * sizeof (int32_t));
 
-	// reading a file
-	char *row;
-	char *mapdata;
-	int fd;
-	int row_len;
-	int row_count;
-	fd = open("./test_maps/42.fdf", O_RDONLY);
-	row = get_next_line(fd);
-	mapdata = ft_strdup("");
-	row_len = ft_strlen(row);
-	row_count = 0;
-
-	while(row != NULL)
-	{
-		// printf("%s", row);
-		mapdata = ft_strjoin_free(mapdata, row);
-		free(row);
-		row = get_next_line(fd);
-		row_count++;
-	}
-
-	close(fd);
-	printf("\n%s\n\n", mapdata);
-	printf("%d\n", ft_strlen("hello"));
-	printf("%d\n", row_count);
+	ft_read_map(&map, "map");
+	ft_draw_map(&glib, &map);
 
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
 	// mlx_loop_hook(mlx, ft_hook, mlx);
-	mlx_key_hook(map.mlx, &keyboard_hook, &map);
+	mlx_key_hook(glib.mlx, &keyboard_hook, &glib);
 	mlx_loop(mlx);
 
 	mlx_delete_image(mlx, img);

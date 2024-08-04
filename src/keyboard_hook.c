@@ -2,13 +2,13 @@
 
 #include "fdf.h"
 
-typedef struct s_key_map
+typedef struct s_key_glib
 {
 	char		*key_val;
 	enum keys	key_act;
-}	t_key_map;
+}	t_key_glib;
 
-t_key_map keyboard[] = {
+t_key_glib keyboard[] = {
 	{"a", MLX_KEY_A},
 	{"b", MLX_KEY_B},
 	{"c", MLX_KEY_C},
@@ -50,13 +50,13 @@ t_key_map keyboard[] = {
 
 void keyboard_hook(mlx_key_data_t keydata, void *param)
 {
-	t_map	*map;
+	t_glib	*glib;
 	size_t	i;
 
-	map = param;
+	glib = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
-		mlx_close_window(map->mlx);
+		mlx_close_window(glib->mlx);
 	}
 	else
 	{

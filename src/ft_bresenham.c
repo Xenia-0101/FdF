@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/03 15:33:22 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/04 12:22:22 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ static void ft_init_line(t_line *l, int p1[2], int p2[2])
 	}
 }
 
-static void ft_bresenham_h(t_map *map, t_line *line)
+static void ft_bresenham_h(t_glib *glib, t_line *line)
 {
 	while (line->point[0] != line->end[0] + line->dx_sgn)
 	{
-		ft_put_points_2d(map, line->point);
+		ft_put_points_2d(glib, line->point);
 		line->err += line->slope;
 		if (line->err >= 0)
 		{
@@ -58,11 +58,11 @@ static void ft_bresenham_h(t_map *map, t_line *line)
 
 }
 
-static void ft_bresenham_v(t_map *map, t_line *line)
+static void ft_bresenham_v(t_glib *glib, t_line *line)
 {
 	while (line->point[1] != line->end[1] + line->dy_sgn)
 	{
-		ft_put_points_2d(map, line->point);
+		ft_put_points_2d(glib, line->point);
 		line->err += line->slope;
 		if (line->err >= 0)
 		{
@@ -73,17 +73,17 @@ static void ft_bresenham_v(t_map *map, t_line *line)
 	}
 }
 
-void ft_bresenham(t_map *map, int start[2], int end[2])
+void ft_bresenham(t_glib *glib, int start[2], int end[2])
 {
 	t_line line;
 	ft_init_line(&line, start, end);
 
 	if (line.dx >= line.dy)
 	{
-		ft_bresenham_h(map, &line);
+		ft_bresenham_h(glib, &line);
 	}
 	else
 	{
-		ft_bresenham_v(map, &line);
+		ft_bresenham_v(glib, &line);
 	}
 }
