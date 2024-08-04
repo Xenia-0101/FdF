@@ -45,7 +45,7 @@ libmlx:
 
 # *** compile libft *** #
 libft:
-	@make bonus -C libft
+	@make -C libft
 	@cp libft/libft.a ./
 	@echo "libft library is ready"
 

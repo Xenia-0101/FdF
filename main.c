@@ -107,7 +107,6 @@ int32_t main(int argc, char **argv)
 	// 	res = get_next_line(fd);
 	// }
 	// close(fd);
-	printf("%d\n", ft_strlen("hello"));
 
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
 	// mlx_loop_hook(mlx, ft_hook, mlx);
