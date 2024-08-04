@@ -66,7 +66,7 @@ OBJ = ${SRC:.c=.o}
 OBJ_BONUS = ${SRC_BONUS:.c=.o}
 OBJ_GNL = ${SRC_GNL:.c=.o}
 
-all: ${NAME} 
+all: ${NAME} bonus gnl
 
 ${NAME}: ${OBJ}
 	${AR} ${NAME} ${OBJ}

@@ -95,18 +95,19 @@ int32_t main(int argc, char **argv)
 	memset(img->pixels, 255, img->width * img->height * sizeof (int32_t));
 
 	// reading a file
-	// char *res;
-	// int fd;
-	// fd = open("./test_maps/42.fdf", O_RDONLY);
+	char *res;
+	int fd;
+	fd = open("./test_maps/42.fdf", O_RDONLY);
 
-	// res = get_next_line(fd);
-	// while(res != NULL)
-	// {
-	// 	printf("%s", res);
-	// 	free(res);
-	// 	res = get_next_line(fd);
-	// }
-	// close(fd);
+	res = get_next_line(fd);
+	while(res != NULL)
+	{
+		printf("%s", res);
+		free(res);
+		res = get_next_line(fd);
+	}
+	close(fd);
+	printf("%d\n", ft_strlen("hello"));
 
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
 	// mlx_loop_hook(mlx, ft_hook, mlx);

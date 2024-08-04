@@ -56,7 +56,7 @@ clean:
 		make clean -C ${LIBFT_DIR}
 
 fclean: clean
-		${RM} ${NAME}
+		${RM} ${NAME} ${LIBFT_NAME}
 
 re: fclean all
 
