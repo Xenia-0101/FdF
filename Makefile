@@ -21,12 +21,13 @@ LIBFT_NAME = libft.a
 SRC := \
 		main.c\
 		src/ft_bresenham.c\
+		src/ft_draw_line.c\
 		src/ft_put_points.c\
 		src/keyboard_hook.c\
 		src/test.c\
 
 OBJ = $(SRC:.c=.o)
-HEADER = -I ./includes/
+HEADER = -I ./include/
 
 all: libft libmlx ${NAME}
 		@echo "FdF executable is ready"

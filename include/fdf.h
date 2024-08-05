@@ -52,5 +52,6 @@ void keyboard_hook(mlx_key_data_t keydata, void *param);
 void ft_bresenham(t_glib *glib, int start[2], int end[2]);
 void ft_put_points_3d(t_glib *glib, int p[3]);
 void ft_put_points_2d(t_glib *glib, int p[2]);
+void ft_draw_line(t_glib *glib, t_map *map);
 
 #endif

@@ -6,14 +6,18 @@
 
 // http://fredericgoset.ovh/mathematiques/courbes/en/bresenham_line.html
 
-#include "fdf.h"
+#include "include/fdf.h"
 // #define SGN(_x) ((_x) >= 0 || -1)
 
-void ft_draw_map(t_glib *glib, t_map *map)
+
+
+
+
+void ft_draw_points(t_glib *glib, t_map *map)
 {
 	int i;
 	int j;
-	int point[2];
+	int point[3];
 
 	i = 0;
 	printf("%d\n", map->rc);
@@ -24,7 +28,8 @@ void ft_draw_map(t_glib *glib, t_map *map)
 		{
 			point[0] = map->coors[i][j].x;
 			point[1] = map->coors[i][j].y;
-			ft_put_points_2d(glib, point);
+			point[2] = map->coors[i][j].z;
+			ft_put_points_3d(glib, point);
 			j++;
 		}
 		i++;
@@ -38,6 +43,10 @@ void ft_read_map(t_map *map, char *file)
 	char *row;
 	char *mapdata;
 	int fd;
+
+	int pull = 10;
+	int shift = 200;
+
 
 	fd = open("./test_maps/42.fdf", O_RDONLY);		// TODO: Change to file name !!
 	row = get_next_line(fd);
@@ -81,9 +90,9 @@ void ft_read_map(t_map *map, char *file)
 		j = 0;
 		while (vals[j])
 		{
-			map->coors[i][j].x = j;
-			map->coors[i][j].y = i;
-			map->coors[i][j].z = ft_atoi(vals[j]);
+			map->coors[i][j].x = j * pull + 2*shift;
+			map->coors[i][j].y = i * pull + shift;
+			map->coors[i][j].z = ft_atoi(vals[j]) * pull / 2;
 			j++;
 		}
 		map->rl = j;
@@ -121,7 +130,8 @@ int32_t main(int argc, char **argv)
 	memset(img->pixels, 255, img->width * img->height * sizeof (int32_t));
 
 	ft_read_map(&map, "map");
-	ft_draw_map(&glib, &map);
+	ft_draw_points(&glib, &map);
+	ft_draw_line(&glib, &map);
 
 	// Register a hook and pass mlx as an optional param before calling mlx_loop!
 	// mlx_loop_hook(mlx, ft_hook, mlx);
