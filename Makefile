@@ -19,24 +19,25 @@ LIBFT_NAME = libft.a
 
 # *** source code files *** #
 SRC := \
-		main.c\
-		src/ft_bresenham.c\
-		src/ft_draw_line.c\
-		src/ft_put_points.c\
-		src/keyboard_hook.c\
-		src/test.c\
+		main.c \
+		src/ft_bresenham.c \
+		src/ft_isometric_transformation.c \
+		src/ft_draw_line.c \
+		src/ft_put_points.c \
+		src/keyboard_hook.c \
+		src/test.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/
 
 all: libft libmlx ${NAME}
-		@echo "FdF executable is ready"
+	@echo "FdF executable is ready"
 
 %.o: %.c
-		@${CC} ${CFLAGS} -c $< $(HEADER) -o $@
+	@${CC} ${CFLAGS} -c $< $(HEADER) -o $@
 
 ${NAME}: ${OBJ}
-		${CC} -o ${NAME} ${OBJ} libft.a ${MLX_LIB}
+	${CC} -o ${NAME} ${OBJ} libft.a ${MLX_LIB}
 
 # *** compile mlx42 *** #
 libmlx:
@@ -47,17 +48,17 @@ libmlx:
 # *** compile libft *** #
 libft:
 	@make -C libft
-	@cp libft/libft.a ./
+	@mv libft/libft.a ./
 	@echo "libft library is ready"
 
 # *** general rules *** #
 clean:
-		${RM} ${OBJ}
-		${RM} ${MLX_DIR}/build
-		make clean -C ${LIBFT_DIR}
+	${RM} ${OBJ}
+	${RM} ${MLX_DIR}/build
+	make clean -C ${LIBFT_DIR}
 
 fclean: clean
-		${RM} ${NAME} ${LIBFT_NAME}
+	${RM} ${NAME} ${LIBFT_NAME}
 
 re: fclean all
 

@@ -6,28 +6,29 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:49:05 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/05 14:10:39 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:43:12 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int *ft_get_point(t_map *map, int i, int j, int point[3])
-{
-	int x = map->coors[i][j].x;
-	int y = map->coors[i][j].y;
-	int z = map->coors[i][j].z;
+// static int *ft_get_point(t_map *map, int i, int j, int point[3])
+// {
+// 	int x = map->coors[i][j].x;
+// 	int y = map->coors[i][j].y;
+// 	int z = map->coors[i][j].z;
 
-	point[0] = x * cos(120) + y * cos(122) + z * cos(118);
-	point[1] = x * sin(120) + y * sin(122) + z * sin(118);
-	point[2] = 0;
-	return (point);
-}
+// 	point[0] = x * cos(120) + y * cos(122) + z * cos(118);
+// 	point[1] = x * sin(120) + y * sin(122) + z * sin(118);
+// 	point[2] = 0;
+// 	return (point);
+// }
+
 
 static void ft_draw_h(t_glib *glib, t_map *map)
 {
-	int p1[3];
-	int p2[3];
+	int p1[2];
+	int p2[2];
 	int i;
 	int j;
 
@@ -37,11 +38,15 @@ static void ft_draw_h(t_glib *glib, t_map *map)
 		j = 0;
 		while (j < map->rl - 1)
 		{
-			ft_bresenham(glib, ft_get_point(map, i, j, p1), ft_get_point(map, i, j + 1, p2));
+			p1[0] = map->coors_tr[i][j].x;
+			p1[1] = map->coors_tr[i][j].y;
+			p2[0] = map->coors_tr[i][j+1].x;
+			p2[1] = map->coors_tr[i][j+1].y;
+			ft_bresenham(glib, p1, p2);
 			j++;
 		}
 		i++;
-		printf("***%d\n", i);
+		// printf("***%d\n", i);
 	}
 }
 
@@ -58,11 +63,15 @@ static void ft_draw_v(t_glib *glib, t_map *map)
 		j = 0;
 		while (j < map->rl)
 		{
-			ft_bresenham(glib, ft_get_point(map, i, j, p1), ft_get_point(map, i + 1, j, p2));
+			p1[0] = map->coors_tr[i][j].x;
+			p1[1] = map->coors_tr[i][j].y;
+			p2[0] = map->coors_tr[i+1][j].x;
+			p2[1] = map->coors_tr[i+1][j].y;
+			ft_bresenham(glib, p1, p2);
 			j++;
 		}
 		i++;
-		printf("***%d\n", i);
+		// printf("***%d\n", i);
 	}
 }
 

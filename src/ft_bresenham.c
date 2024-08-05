@@ -6,15 +6,11 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/05 14:10:44 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:45:50 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#define ABS(_x) ((_x) >= 0 ? (_x) : -(_x))
-#define SGN(_x) ((_x) < 0 ? -1 : \
-						 ((_x) > 0 ? 1 : 0))
 
 static void ft_init_line(t_line *l, int p1[2], int p2[2])
 {
