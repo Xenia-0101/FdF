@@ -6,13 +6,19 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 17:39:14 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/05 18:54:20 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:43:25 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+//	**** LOOP COUNT: | |
 
+// transrom point ij from map->coors and store it in p[3]
+// check coors against max and min x/y vals and update them
+// Input: *map, p[3] - placeholder for coors, i,j - point position
+// Output: p[3]
+// Modified: map->coors_tr[i][j], map->lx, map->ly, map->hx, map->hy
 static double *ft_transform(t_map *map, double p[3], int i, int j)
 {
 	int x;
@@ -38,8 +44,8 @@ static double *ft_transform(t_map *map, double p[3], int i, int j)
 		map->hy = p[1];
 	return (p);
 }
-
-void ft_shift_img(t_map *map)
+// shift x and y coors into positive numbers and into the middle of the image
+static void ft_shift_img(t_map *map)
 {
 	int i;
 	int j;

@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:53:50 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/05 13:53:52 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:24:11 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,16 @@ void keyboard_hook(mlx_key_data_t keydata, void *param)
 	{
 		mlx_close_window(glib->mlx);
 	}
+	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
+	{
+		glib->map->step_z++;
+		ft_parse_map(glib->map, "map");
+
+		memset(glib->img->pixels, 0, glib->img->width * glib->img->height * sizeof (int32_t));
+		ft_isometric_transformation(glib->map);
+		ft_draw_line(glib, glib->map);
+	}
+	// else if (mlx_is_key_down(glib->mlx, MLX_KEY_Q))
 	else
 	{
 		i = 0;

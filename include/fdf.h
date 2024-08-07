@@ -15,14 +15,6 @@
 #define SGN(_x) ((_x) < 0 ? -1 : \
 						 ((_x) > 0 ? 1 : 0))
 
-typedef struct s_glib
-{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	int			x_size;
-	int			y_size;
-}	t_glib;
-
 typedef struct s_point
 {
 	int	x;
@@ -53,6 +45,15 @@ typedef struct s_map
 	double		hy; // highest y coor
 }	t_map;
 
+typedef struct s_glib
+{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	int			x_size;
+	int			y_size;
+	t_map		*map;
+}	t_glib;
+
 typedef struct s_line
 {
 	int		start[2];
@@ -73,5 +74,7 @@ void ft_isometric_transformation(t_map *map);
 void ft_put_points_3d(t_glib *glib, int p[3]);
 void ft_put_points_2d(t_glib *glib, int p[2]);
 void ft_draw_line(t_glib *glib, t_map *map);
+void ft_parse_map(t_map *map, char *file);
+void ft_draw_points(t_glib *glib, t_map *map);
 
 #endif

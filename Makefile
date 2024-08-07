@@ -26,6 +26,8 @@ SRC := \
 		src/ft_put_points.c \
 		src/keyboard_hook.c \
 		src/test.c \
+		src/ft_draw_points.c \
+		src/ft_parse_map.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/
