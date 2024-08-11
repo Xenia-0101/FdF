@@ -6,58 +6,12 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:53:50 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/07 19:24:11 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/11 11:20:38 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "fdf.h"
-
-typedef struct s_key_glib
-{
-	char		*key_val;
-	enum keys	key_act;
-}	t_key_glib;
-
-t_key_glib keyboard[] = {
-	{"a", MLX_KEY_A},
-	{"b", MLX_KEY_B},
-	{"c", MLX_KEY_C},
-	{"d", MLX_KEY_D},
-	{"e", MLX_KEY_E},
-	{"f", MLX_KEY_F},
-	{"g", MLX_KEY_G},
-	{"h", MLX_KEY_H},
-	{"i", MLX_KEY_I},
-	{"j", MLX_KEY_J},
-	{"k", MLX_KEY_K},
-	{"l", MLX_KEY_L},
-	{"m", MLX_KEY_M},
-	{"n", MLX_KEY_N},
-	{"o", MLX_KEY_O},
-	{"p", MLX_KEY_P},
-	{"q", MLX_KEY_Q},
-	{"r", MLX_KEY_R},
-	{"s", MLX_KEY_S},
-	{"t", MLX_KEY_T},
-	{"u", MLX_KEY_U},
-	{"v", MLX_KEY_V},
-	{"w", MLX_KEY_W},
-	{"x", MLX_KEY_X},
-	{"y", MLX_KEY_Y},
-	{"z", MLX_KEY_Z},
-	{" ", MLX_KEY_SPACE},
-	{"0", MLX_KEY_0},
-	{"1", MLX_KEY_1},
-	{"2", MLX_KEY_2},
-	{"3", MLX_KEY_3},
-	{"4", MLX_KEY_4},
-	{"5", MLX_KEY_5},
-	{"6", MLX_KEY_6},
-	{"7", MLX_KEY_7},
-	{"8", MLX_KEY_8},
-	{"9", MLX_KEY_9},
-};
 
 void keyboard_hook(mlx_key_data_t keydata, void *param)
 {
@@ -68,27 +22,74 @@ void keyboard_hook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
 		mlx_close_window(glib->mlx);
+		return ;
 	}
-	if (keydata.key == MLX_KEY_J && keydata.action == MLX_PRESS)
+	if ((keydata.key == MLX_KEY_LEFT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
 	{
-		glib->map->step_z++;
-		ft_parse_map(glib->map, "map");
-
-		memset(glib->img->pixels, 0, glib->img->width * glib->img->height * sizeof (int32_t));
+		glib->map->step_x -= 5;
+		ft_reset_img(glib);
 		ft_isometric_transformation(glib->map);
-		ft_draw_line(glib, glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
 	}
-	// else if (mlx_is_key_down(glib->mlx, MLX_KEY_Q))
-	else
+	if ((keydata.key == MLX_KEY_RIGHT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
 	{
-		i = 0;
-		while (i < sizeof (keyboard) / sizeof (keyboard[0]))
-		{
-			if (keydata.key == keyboard[i].key_act && keydata.action == MLX_PRESS)
-				puts(keyboard[i].key_val);
-			i++;
-		}
+		glib->map->step_x += 5;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
 	}
+	if ((keydata.key == MLX_KEY_DOWN && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		glib->map->step_y += 5;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
+	}
+	if ((keydata.key == MLX_KEY_UP && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		glib->map->step_y -= 5;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
+	}
+	if ((keydata.key == MLX_KEY_KP_ADD && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		glib->map->step_xy += 0.5;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
+	}
+	if ((keydata.key == MLX_KEY_KP_SUBTRACT && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		glib->map->step_xy -= 0.5;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
+	}
+	if ((keydata.key == MLX_KEY_Z && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		glib->map->step_z += 0.1;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
+	}
+	if ((keydata.key == MLX_KEY_X && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		glib->map->step_z -= 0.1;
+		ft_reset_img(glib);
+		ft_isometric_transformation(glib->map);
+		ft_map_shift(glib);
+		ft_draw(glib, glib->map);
+	}
+	// printf("[%f; %.1f]\n", glib->map->coors_tr[0][glib->map->rl-1].x, glib->map->coors_tr[0][glib->map->rl-1].y);
+
 
 }
 

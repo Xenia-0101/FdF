@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/05 18:45:50 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/11 10:30:53 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void ft_bresenham(t_glib *glib, int start[2], int end[2])
 {
 	t_line line;
 	ft_init_line(&line, start, end);
-
 	if (line.dx >= line.dy)
 	{
 		ft_bresenham_h(glib, &line);

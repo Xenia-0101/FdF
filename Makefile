@@ -21,13 +21,12 @@ LIBFT_NAME = libft.a
 SRC := \
 		main.c \
 		src/ft_bresenham.c \
-		src/ft_isometric_transformation.c \
-		src/ft_draw_line.c \
-		src/ft_put_points.c \
+		src/ft_draw.c \
+		src/ft_fdf_utils.c \
 		src/keyboard_hook.c \
-		src/test.c \
-		src/ft_draw_points.c \
-		src/ft_parse_map.c \
+		src/ft_map_shift.c \
+		src/ft_isometric_transformation.c \
+		src/ft_map_parse.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/

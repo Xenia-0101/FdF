@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_draw_line.c                                     :+:      :+:    :+:   */
+/*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:49:05 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/05 18:43:12 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/09 20:01:32 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-// static int *ft_get_point(t_map *map, int i, int j, int point[3])
-// {
-// 	int x = map->coors[i][j].x;
-// 	int y = map->coors[i][j].y;
-// 	int z = map->coors[i][j].z;
-
-// 	point[0] = x * cos(120) + y * cos(122) + z * cos(118);
-// 	point[1] = x * sin(120) + y * sin(122) + z * sin(118);
-// 	point[2] = 0;
-// 	return (point);
-// }
-
 
 static void ft_draw_h(t_glib *glib, t_map *map)
 {
@@ -71,11 +58,10 @@ static void ft_draw_v(t_glib *glib, t_map *map)
 			j++;
 		}
 		i++;
-		// printf("***%d\n", i);
 	}
 }
 
-void ft_draw_line(t_glib *glib, t_map *map)
+void ft_draw(t_glib *glib, t_map *map)
 {
 	ft_draw_v(glib, map);
 	ft_draw_h(glib, map);
