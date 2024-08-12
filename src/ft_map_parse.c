@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/11 11:57:12 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:21:25 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ static int ft_map_read(t_map *map, int fd)
 	return (1);
 }
 
+void ft_free_row(char **row, int l)
+{
+	int i;
+
+	i = 0;
+	while (i < l)
+	{
+		free(row[i]);
+		i++;
+	}
+	free(row);
+}
+
 static int ft_map_to_int(t_map *map)
 {
 	int i;
@@ -73,7 +86,7 @@ static int ft_map_to_int(t_map *map)
 			map->data_i[i][j] = ft_atoi(row[j]);
 			j++;
 		}
-		free(row);		// ToDo: free an array of arrays !!!
+		ft_free_row(row, map->rl);		// ToDo: free an array of arrays !!!
 		i++;
 	}
 	return (1);
@@ -94,5 +107,7 @@ int ft_map_parse(t_map *map, char *file)
 	ft_map_read(map, fd);
 	close(fd);
 	ft_map_to_int(map);
+	free(folder);
+	free(path);
 	return (1);
 }

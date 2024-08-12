@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_transform_iso.c                                 :+:      :+:    :+:   */
+/*   ft_isometric_transformation.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 09:58:29 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/11 09:59:20 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:29:21 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 // Allocates memory for map->coors
 // Requires map->rl and map->rc values to be set correctly
+
 static void ft_coors_allocate(t_map *map)
 {
 	int i;
