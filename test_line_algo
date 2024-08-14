@@ -69,15 +69,15 @@ void draw_cube(t_map *map)
 
 		// DRAW THE POINTS TO THE MAP
 
-		ft_put_points_2d(&map, test);
-		ft_put_points_2d(&map, AA);
-		ft_put_points_2d(&map, BB);
-		ft_put_points_2d(&map, CC);
-		ft_put_points_2d(&map, DD);
-		ft_put_points_2d(&map, EE);
-		ft_put_points_2d(&map, FF);
-		ft_put_points_2d(&map, GG);
-		ft_put_points_2d(&map, HH);
+		ft_put_point(&map, test);
+		ft_put_point(&map, AA);
+		ft_put_point(&map, BB);
+		ft_put_point(&map, CC);
+		ft_put_point(&map, DD);
+		ft_put_point(&map, EE);
+		ft_put_point(&map, FF);
+		ft_put_point(&map, GG);
+		ft_put_point(&map, HH);
 
 		// CONNECT THE POINTS
 
@@ -139,15 +139,15 @@ void draw_cube(t_map *map)
 
 		// DRAW THE POINTS TO THE MAP
 
-		ft_put_points_2d(map, test);
-		ft_put_points_2d(map, AA);
-		ft_put_points_2d(map, BB);
-		ft_put_points_2d(map, CC);
-		ft_put_points_2d(map, DD);
-		ft_put_points_2d(map, EE);
-		ft_put_points_2d(map, FF);
-		ft_put_points_2d(map, GG);
-		ft_put_points_2d(map, HH);
+		ft_put_point(map, test);
+		ft_put_point(map, AA);
+		ft_put_point(map, BB);
+		ft_put_point(map, CC);
+		ft_put_point(map, DD);
+		ft_put_point(map, EE);
+		ft_put_point(map, FF);
+		ft_put_point(map, GG);
+		ft_put_point(map, HH);
 
 		// CONNECT THE POINTS
 

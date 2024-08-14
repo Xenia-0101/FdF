@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/12 18:21:25 by xenia            ###   ########.fr       */
+/*   Updated: 2024/08/14 18:00:49 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,38 +66,46 @@ void ft_free_row(char **row, int l)
 	free(row);
 }
 
-static int ft_map_to_int(t_map *map)
+static int ft_map_to_point(t_glib *glib)
 {
+	printf("Map to point...\n");
 	int i;
 	int	j;
 	char **row;
+	t_map *map = glib->map;
 
 	i = 0;
-	if (!(map->data_i = (int **)ft_calloc(map->rc, sizeof (int *))))
+	if (!(map->coors = (t_point **)ft_calloc(map->rc, sizeof (t_point *))))
 		return (-1);
 	while (i < map->rc)
 	{
-		if (!(map->data_i[i] = (int *)ft_calloc(map->rl, sizeof (int))))
+		if (!(map->coors[i] = (t_point *)ft_calloc(map->rl, sizeof (t_point))))
 			return (-1);
 		row = ft_split(map->data_s[i], ' ');
 		j = 0;
 		while (row[j])
 		{
-			map->data_i[i][j] = ft_atoi(row[j]);
+			map->coors[i][j].x = j;
+			map->coors[i][j].y = i;
+			map->coors[i][j].z = ft_atoi(row[j]) * map->step_z;
+			printf("%4.1f ", map->coors[i][j].x);
 			j++;
 		}
+		printf("\n");
 		ft_free_row(row, map->rl);		// ToDo: free an array of arrays !!!
 		i++;
 	}
+	printf("\n");
 	return (1);
 }
 
-int ft_map_parse(t_map *map, char *file)
+int ft_map_parse(t_glib *glib, char *file)
 {
 	char *folder;
 	char *path;
 	int f_len;
 	int fd;
+	t_map *map = glib->map;
 
 	folder = ft_strdup("./test_maps/");
 	path = ft_strjoin(folder, file);
@@ -106,7 +114,7 @@ int ft_map_parse(t_map *map, char *file)
 		return (-1);
 	ft_map_read(map, fd);
 	close(fd);
-	ft_map_to_int(map);
+	ft_map_to_point(glib);
 	free(folder);
 	free(path);
 	return (1);

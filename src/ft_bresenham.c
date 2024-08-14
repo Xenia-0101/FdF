@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/11 10:30:53 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:55:01 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void ft_bresenham_h(t_glib *glib, t_line *line)
 {
 	while (line->point[0] != line->end[0] + line->dx_sgn)
 	{
-		ft_put_points_2d(glib, line->point);
+		ft_put_point(glib, line->point);
 		line->err += line->slope;
 		if (line->err >= 0)
 		{
@@ -58,7 +58,7 @@ static void ft_bresenham_v(t_glib *glib, t_line *line)
 {
 	while (line->point[1] != line->end[1] + line->dy_sgn)
 	{
-		ft_put_points_2d(glib, line->point);
+		ft_put_point(glib, line->point);
 		line->err += line->slope;
 		if (line->err >= 0)
 		{

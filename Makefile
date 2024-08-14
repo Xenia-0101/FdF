@@ -24,9 +24,9 @@ SRC := \
 		src/ft_draw.c \
 		src/ft_fdf_utils.c \
 		src/keyboard_hook.c \
-		src/ft_map_shift.c \
 		src/ft_isometric_transformation.c \
 		src/ft_map_parse.c \
+		src/ft_math.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/
