@@ -38,8 +38,11 @@ typedef struct s_map
 
 	int			dx;		// init to scr x / 2
 	int			dy;		// init to scr y / 2
-	float		dz;		// init to 1
+	float		dz;		// init to 10
 	float		dxy;	// init to 10;
+	int			ax;		// rot angle around x axis, init to 0
+	int			ay;		// rot angle around y axis, init to 0
+	int			az;		// rot angle around z axis, init to 0
 }	t_map;
 
 typedef struct s_glib
@@ -48,8 +51,6 @@ typedef struct s_glib
 	mlx_image_t	*img;
 	t_map		*map;
 	float		tR[3][3]; // isometric transformation
-	float		isoR[3][3]; // isometric transformation
-	float		rxR[3][3]; // rotate x axis
 	int			x;
 	int			y;
 }	t_glib;
@@ -83,6 +84,10 @@ void ft_put_point(t_glib *glib, int p[2]);
 void ft_reset_img(t_glib *glib);
 // math
 void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3]);
+void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3], float *R[3][3]);
+void ft_set_isoR(float *R[3][3]);
+void ft_set_rzR(float *R[3][3], float t);
+void ft_set_rxR(float *R[3][3], float t);
 // manipulations
 void ft_sh_x(t_glib *glib, t_point **c, float v);
 void ft_sh_y(t_glib *glib, t_point **c, float v);

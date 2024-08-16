@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:08:40 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 20:23:06 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:45:44 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ void ft_str_z(t_glib *glib, float v)
 		while (j < glib->map->rl)
 		{
 			map->coors[i][j].z *= v;
-			ft_pnt_by_mtrx(map->coors[i][j], &(map->coors_tr[i][j]), glib->isoR);
+			ft_pnt_by_mtrx(map->coors[i][j], &(map->coors_tr[i][j]), glib->tR);
 			printf("%.1f ", map->coors_tr[i][j].x);
 			j++;
 		}

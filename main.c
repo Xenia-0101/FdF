@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 20:28:09 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:44:56 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,86 +20,28 @@
 #include "include/fdf.h"
 
 // **** INIT FUNCTIONS **** //
-void ft_init_glib_isoR(t_glib *glib)
-{
-	glib->isoR[0][0] = sqrt(2) / 2;
-	glib->isoR[0][1] = -sqrt(2) / 2;
-	glib->isoR[0][2] = 0;
-
-	glib->isoR[1][0] = sqrt(6) / 6;
-	glib->isoR[1][1] = sqrt(6) / 6;
-	glib->isoR[1][2] = -sqrt(6) / 3;
-
-	glib->isoR[2][0] = sqrt(3) / 3;
-	glib->isoR[2][1] = sqrt(3) / 3;
-	glib->isoR[2][2] = sqrt(3) / 3;
-}
 void ft_init_glib_tR(t_glib *glib)
 {
-	glib->isoR[0][0] = sqrt(2) / 2;
-	glib->isoR[0][1] = -sqrt(2) / 2;
-	glib->isoR[0][2] = 0;
+	glib->tR[0][0] = sqrt(2) / 2;
+	glib->tR[0][1] = -sqrt(2) / 2;
+	glib->tR[0][2] = 0;
 
-	glib->isoR[1][0] = sqrt(6) / 6;
-	glib->isoR[1][1] = sqrt(6) / 6;
-	glib->isoR[1][2] = -sqrt(6) / 3;
+	glib->tR[1][0] = sqrt(6) / 6;
+	glib->tR[1][1] = sqrt(6) / 6;
+	glib->tR[1][2] = -sqrt(6) / 3;
 
-	glib->isoR[2][0] = sqrt(3) / 3;
-	glib->isoR[2][1] = sqrt(3) / 3;
-	glib->isoR[2][2] = sqrt(3) / 3;
+	glib->tR[2][0] = sqrt(3) / 3;
+	glib->tR[2][1] = sqrt(3) / 3;
+	glib->tR[2][2] = sqrt(3) / 3;
 }
 
-void ft_init_glib_rxR(t_glib *glib)
-{
-
-	// rotate around x
-
-	glib->rxR[0][0] = cos(-45);
-	glib->rxR[0][1] = -sin(-45);
-	glib->rxR[0][2] = 0.0;
-
-	glib->rxR[1][0] = sin(-45);
-	glib->rxR[1][1] = cos(-45);
-	glib->rxR[1][2] = 0.0;
-
-	glib->rxR[2][0] = 0.0;
-	glib->rxR[2][1] = 0.0;
-	glib->rxR[2][2] = 1.0;
-
-
-	// glib->rxR[0][0] = 1.0;
-	// glib->rxR[0][1] = 0.0;
-	// glib->rxR[0][2] = 0.0;
-
-	// glib->rxR[1][0] = 0.0;
-	// glib->rxR[1][1] = cos(1);
-	// glib->rxR[1][2] = -sin(1);
-
-	// glib->rxR[2][0] = 0.0;
-	// glib->rxR[2][1] = sin(1);
-	// glib->rxR[2][2] = cos(1);
-
-
-	glib->rxR[0][0] = cos(45);
-	glib->rxR[0][1] = -sin(45);
-	glib->rxR[0][2] = 0.0;
-
-	glib->rxR[1][0] = sin(45);
-	glib->rxR[1][1] = cos(45);
-	glib->rxR[1][2] = 0.0;
-
-	glib->rxR[2][0] = 0.0;
-	glib->rxR[2][1] = 0.0;
-	glib->rxR[2][2] = 1.0;
-}
 void ft_init_glib(t_glib *glib)
 {
 	glib->mlx = 0;
 	glib->img = 0;
 	glib->map = 0;
+	// ft_init_glib_tR(glib);
 	ft_init_glib_tR(glib);
-	ft_init_glib_isoR(glib);
-	ft_init_glib_rxR(glib);
 	glib->x = 800;
 	glib->y = 600;
 }
@@ -117,6 +59,9 @@ void ft_init_map(t_map *map)
 	map->dy = 300;
 	map->dxy = 10;
 	map->dz = 10;
+	map->ax = 0;
+	map->ay = 0;
+	map->az = 0;
 }
 void ft_free_map_data_s(t_map *map)
 {
