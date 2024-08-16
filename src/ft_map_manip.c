@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:08:40 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 19:57:44 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:23:06 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ prepare the poinits:
 calculate the projection:
 	-- multiply each point by transformation matrix
 		-- transformation matrix: projR * rot x * rot y * rot z
+	-- NEED TO HAVE:
+		* transformation matrix:
+			-- glib.tR --> float[3][3]
+				- init to isometric transformation;
+				- change later ?
+
 
 shift to the correct position:
 	-- at beginning -> centre of the screen

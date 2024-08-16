@@ -47,6 +47,7 @@ typedef struct s_glib
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_map		*map;
+	float		tR[3][3]; // isometric transformation
 	float		isoR[3][3]; // isometric transformation
 	float		rxR[3][3]; // rotate x axis
 	int			x;

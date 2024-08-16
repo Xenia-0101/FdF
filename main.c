@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 20:06:27 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:28:09 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,20 @@
 
 // **** INIT FUNCTIONS **** //
 void ft_init_glib_isoR(t_glib *glib)
+{
+	glib->isoR[0][0] = sqrt(2) / 2;
+	glib->isoR[0][1] = -sqrt(2) / 2;
+	glib->isoR[0][2] = 0;
+
+	glib->isoR[1][0] = sqrt(6) / 6;
+	glib->isoR[1][1] = sqrt(6) / 6;
+	glib->isoR[1][2] = -sqrt(6) / 3;
+
+	glib->isoR[2][0] = sqrt(3) / 3;
+	glib->isoR[2][1] = sqrt(3) / 3;
+	glib->isoR[2][2] = sqrt(3) / 3;
+}
+void ft_init_glib_tR(t_glib *glib)
 {
 	glib->isoR[0][0] = sqrt(2) / 2;
 	glib->isoR[0][1] = -sqrt(2) / 2;
@@ -83,6 +97,7 @@ void ft_init_glib(t_glib *glib)
 	glib->mlx = 0;
 	glib->img = 0;
 	glib->map = 0;
+	ft_init_glib_tR(glib);
 	ft_init_glib_isoR(glib);
 	ft_init_glib_rxR(glib);
 	glib->x = 800;
@@ -98,9 +113,10 @@ void ft_init_map(t_map *map)
 	map->rc = 0;
 	map->step_xy = 10;
 	map->step_z = 0.1;
-	map->dx = 0;
+	map->dx = 400;
+	map->dy = 300;
 	map->dxy = 10;
-	map->dz = 1;
+	map->dz = 10;
 }
 void ft_free_map_data_s(t_map *map)
 {
@@ -224,7 +240,7 @@ int32_t main(int argc, char **argv)
 
 	// transform coordinates
 	ft_map_render(&glib);
-	// ft_map_transform(&glib);
+	ft_map_transform(&glib);
 
 	// display data
 	ft_draw(&glib, &map);
