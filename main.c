@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/14 20:15:24 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 20:06:27 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,57 @@ void ft_init_glib_isoR(t_glib *glib)
 	glib->isoR[2][1] = sqrt(3) / 3;
 	glib->isoR[2][2] = sqrt(3) / 3;
 }
+
+void ft_init_glib_rxR(t_glib *glib)
+{
+
+	// rotate around x
+
+	glib->rxR[0][0] = cos(-45);
+	glib->rxR[0][1] = -sin(-45);
+	glib->rxR[0][2] = 0.0;
+
+	glib->rxR[1][0] = sin(-45);
+	glib->rxR[1][1] = cos(-45);
+	glib->rxR[1][2] = 0.0;
+
+	glib->rxR[2][0] = 0.0;
+	glib->rxR[2][1] = 0.0;
+	glib->rxR[2][2] = 1.0;
+
+
+	// glib->rxR[0][0] = 1.0;
+	// glib->rxR[0][1] = 0.0;
+	// glib->rxR[0][2] = 0.0;
+
+	// glib->rxR[1][0] = 0.0;
+	// glib->rxR[1][1] = cos(1);
+	// glib->rxR[1][2] = -sin(1);
+
+	// glib->rxR[2][0] = 0.0;
+	// glib->rxR[2][1] = sin(1);
+	// glib->rxR[2][2] = cos(1);
+
+
+	glib->rxR[0][0] = cos(45);
+	glib->rxR[0][1] = -sin(45);
+	glib->rxR[0][2] = 0.0;
+
+	glib->rxR[1][0] = sin(45);
+	glib->rxR[1][1] = cos(45);
+	glib->rxR[1][2] = 0.0;
+
+	glib->rxR[2][0] = 0.0;
+	glib->rxR[2][1] = 0.0;
+	glib->rxR[2][2] = 1.0;
+}
 void ft_init_glib(t_glib *glib)
 {
 	glib->mlx = 0;
 	glib->img = 0;
 	glib->map = 0;
 	ft_init_glib_isoR(glib);
+	ft_init_glib_rxR(glib);
 	glib->x = 800;
 	glib->y = 600;
 }
@@ -53,7 +98,9 @@ void ft_init_map(t_map *map)
 	map->rc = 0;
 	map->step_xy = 10;
 	map->step_z = 0.1;
-	map->sh_x = 0;
+	map->dx = 0;
+	map->dxy = 10;
+	map->dz = 1;
 }
 void ft_free_map_data_s(t_map *map)
 {
@@ -111,141 +158,16 @@ void ft_free_glib(t_glib *glib)
 	glib->x = glib->y = 0;
 }
 
-void ft_sh_x(t_glib *glib, float v)
-{
-	t_point **c = glib->map->coors_tr;
-	int i;
-	int j;
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			c[i][j].x += v;
-			j++;
-		}
-		i++;
-	}
-}
-
-void ft_sh_y(t_glib *glib, float v)
-{
-	t_point **c = glib->map->coors_tr;
-	int i;
-	int j;
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			c[i][j].y += v;
-			j++;
-		}
-		i++;
-	}
-}
-
-void ft_zoom_in(t_glib *glib, float v)
-{
-	t_map *map = glib->map;
-	t_point **c = glib->map->coors_tr;
-	int i;
-	int j;
-	double mid_x;
-	double mid_y;
-	double const_x;
-	double const_y;
-
-	mid_x = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_y = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-	const_x = (0.1 * glib->x / 2 + mid_x);
-	const_y = (0.1 * glib->y / 2 + mid_y);
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			c[i][j].x = (c[i][j].x + mid_x) * v - const_x;
-			c[i][j].y = (c[i][j].y + mid_y) * v - const_y;
-			j++;
-		}
-		i++;
-	}
-}
-void ft_zoom_out(t_glib *glib, float v)
-{
-	t_map *map = glib->map;
-	t_point **c = glib->map->coors_tr;
-	int i;
-	int j;
-	double mid_x;
-	double mid_y;
-	double const_x;
-	double const_y;
-
-	mid_x = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_y = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-	const_x = mid_x - (glib->x / 2 - (glib->x / 2) * v);
-	const_y = mid_y - (glib->y / 2 - (glib->y / 2) * v);
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			c[i][j].x = (c[i][j].x + mid_x) * v - const_x;
-			c[i][j].y = (c[i][j].y + mid_y) * v - const_y;
-			j++;
-		}
-		i++;
-	}
-}
-
-void ft_str_z(t_glib *glib, float v)
-{
-	// change z in coors
-	// calculate projection
-	t_map *map = glib->map;
-	int i;
-	int j;
-	double mid_x;
-	double mid_y;
-	mid_x = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_y = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			map->coors[i][j].z *= v;
-			ft_point_matrix(map->coors[i][j], &(map->coors_tr[i][j]), glib->isoR);
-			printf("%.1f ", map->coors_tr[i][j].x);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	ft_point_shift(glib);
-	ft_sh_x(glib, -mid_x);
-	ft_sh_y(glib, -mid_y);
-	// shift to original place
-}
-
 void ft_manipulate_img(t_glib *glib, char o, float v)
 {
 	// manipulate img based on operation and value passed
 	if (o == 'x')
 	{
-		ft_sh_x(glib, v);
+		ft_sh_x(glib, glib->map->coors_tr, v);
 	}
 	if (o == 'y')
 	{
-		ft_sh_y(glib, v);
+		ft_sh_y(glib, glib->map->coors_tr, v);
 	}
 	if (o == '+')
 	{
@@ -258,6 +180,10 @@ void ft_manipulate_img(t_glib *glib, char o, float v)
 	if (o == 'z')
 	{
 		ft_str_z(glib, v);
+	}
+	if (o == 'a')
+	{
+		ft_rotate_x(glib, v);
 	}
 	memset(glib->img->pixels, 0x00, glib->img->width * glib->img->height * sizeof (int32_t));
 	ft_draw(glib, glib->map);
@@ -297,7 +223,8 @@ int32_t main(int argc, char **argv)
 	ft_map_parse(&glib, file);
 
 	// transform coordinates
-	ft_isometric_transformation(&glib);
+	ft_map_render(&glib);
+	// ft_map_transform(&glib);
 
 	// display data
 	ft_draw(&glib, &map);

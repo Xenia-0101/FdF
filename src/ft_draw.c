@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:49:05 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/09 20:01:32 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:50:48 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static void ft_draw_h(t_glib *glib, t_map *map)
 		j = 0;
 		while (j < map->rl - 1)
 		{
-			p1[0] = map->coors_tr[i][j].x;
-			p1[1] = map->coors_tr[i][j].y;
-			p2[0] = map->coors_tr[i][j+1].x;
-			p2[1] = map->coors_tr[i][j+1].y;
+			p1[0] = map->coors[i][j].x;
+			p1[1] = map->coors[i][j].y;
+			p2[0] = map->coors[i][j+1].x;
+			p2[1] = map->coors[i][j+1].y;
 			ft_bresenham(glib, p1, p2);
 			j++;
 		}
@@ -50,10 +50,10 @@ static void ft_draw_v(t_glib *glib, t_map *map)
 		j = 0;
 		while (j < map->rl)
 		{
-			p1[0] = map->coors_tr[i][j].x;
-			p1[1] = map->coors_tr[i][j].y;
-			p2[0] = map->coors_tr[i+1][j].x;
-			p2[1] = map->coors_tr[i+1][j].y;
+			p1[0] = map->coors[i][j].x;
+			p1[1] = map->coors[i][j].y;
+			p2[0] = map->coors[i+1][j].x;
+			p2[1] = map->coors[i+1][j].y;
 			ft_bresenham(glib, p1, p2);
 			j++;
 		}

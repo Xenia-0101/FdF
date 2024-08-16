@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/14 18:00:49 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:30:08 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,20 +85,32 @@ static int ft_map_to_point(t_glib *glib)
 		j = 0;
 		while (row[j])
 		{
-			map->coors[i][j].x = j;
-			map->coors[i][j].y = i;
+			// map->coors[i][j].x = j;
+			// map->coors[i][j].y = i;
+			map->coors[i][j].x = j - map->rl / 2;
+			map->coors[i][j].y = i - map->rc / 2;
 			map->coors[i][j].z = ft_atoi(row[j]) * map->step_z;
-			printf("%4.1f ", map->coors[i][j].x);
+			// printf("%4.1f ", map->coors[i][j].x);
 			j++;
 		}
-		printf("\n");
-		ft_free_row(row, map->rl);		// ToDo: free an array of arrays !!!
+		// printf("\n");
+		ft_free_row(row, map->rl);
 		i++;
 	}
+	// ft_sh_x(glib, map->coors, -map->rl / 2);
+	printf("first point x y: %.1f %.1f\n", map->coors[0][0].x, map->coors[0][0].y);
+	printf("mid point x y: %.1f %.1f\n", map->coors[map->rc/2][map->rl/2].x, map->coors[map->rc/2][map->rl/2].y);
+	printf("last point x y: %.1f %.1f\n", map->coors[(map->rc)-1][(map->rl)-1].x, map->coors[(map->rc)-1][(map->rl)-1].y);
 	printf("\n");
 	return (1);
 }
 
+
+/// @brief Read file data, set map.coors to
+///			coordinates with centre at the origin
+/// @param glib - graphic library struct
+/// @param file - file to be read
+/// @return 1 on success, -1 on error
 int ft_map_parse(t_glib *glib, char *file)
 {
 	char *folder;

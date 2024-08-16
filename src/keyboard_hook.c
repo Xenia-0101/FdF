@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:53:50 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/14 20:16:10 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:48:09 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void keyboard_hook(mlx_key_data_t keydata, void *param)
 	if ((keydata.key == MLX_KEY_X && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
 	{
 		ft_manipulate_img(glib, 'z', 0.9);
+	}
+	if ((keydata.key == MLX_KEY_A && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
+	{
+		ft_manipulate_img(glib, 'a', 5);
 	}
 	// if ((keydata.key == MLX_KEY_W && (keydata.action == MLX_PRESS || keydata.action == MLX_REPEAT)))
 	// {

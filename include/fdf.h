@@ -36,7 +36,10 @@ typedef struct s_map
 	double		step_z; // stretch vertically
 	double		step_xy; // stretch horizontally
 
-	int			sh_x;
+	int			dx;		// init to scr x / 2
+	int			dy;		// init to scr y / 2
+	float		dz;		// init to 1
+	float		dxy;	// init to 10;
 }	t_map;
 
 typedef struct s_glib
@@ -45,6 +48,7 @@ typedef struct s_glib
 	mlx_image_t	*img;
 	t_map		*map;
 	float		isoR[3][3]; // isometric transformation
+	float		rxR[3][3]; // rotate x axis
 	int			x;
 	int			y;
 }	t_glib;
@@ -67,15 +71,23 @@ void ft_bresenham(t_glib *glib, int start[2], int end[2]);
 void ft_draw(t_glib *glib, t_map *map);
 void ft_manipulate_img(t_glib *glib, char o, float v);
 void keyboard_hook(mlx_key_data_t keydata, void *param);
-int ft_isometric_transformation(t_glib *glib);
+int ft_map_transform(t_glib *glib);
 void ft_point_shift(t_glib *glib);
 int ft_map_parse(t_glib *glib, char *filename);
+void ft_map_render(t_glib *glib);
 // utils
 // int get_colour(int r, int g, int b);
 int get_colour(int r, int g, int b, int a);
 void ft_put_point(t_glib *glib, int p[2]);
 void ft_reset_img(t_glib *glib);
 // math
-void ft_point_matrix(t_point p, t_point *q, float R[3][3]);
+void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3]);
+// manipulations
+void ft_sh_x(t_glib *glib, t_point **c, float v);
+void ft_sh_y(t_glib *glib, t_point **c, float v);
+void ft_zoom_in(t_glib *glib, float v);
+void ft_zoom_out(t_glib *glib, float v);
+void ft_str_z(t_glib *glib, float v);
+void ft_rotate_x(t_glib *glib, float v);
 
 #endif
