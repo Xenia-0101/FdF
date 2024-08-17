@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 19:30:08 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:36:17 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,9 @@ static int ft_map_to_point(t_glib *glib)
 		j = 0;
 		while (row[j])
 		{
-			// map->coors[i][j].x = j;
-			// map->coors[i][j].y = i;
 			map->coors[i][j].x = j - map->rl / 2;
 			map->coors[i][j].y = i - map->rc / 2;
-			map->coors[i][j].z = ft_atoi(row[j]) * map->step_z;
-			// printf("%4.1f ", map->coors[i][j].x);
+			map->coors[i][j].z = ft_atoi(row[j]);
 			j++;
 		}
 		// printf("\n");

@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:32:25 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 12:55:25 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:32:57 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void ft_map_render(t_glib *glib)
 		{
 			map->coors[i][j].x = map->coors[i][j].x * map->dxy + (glib->x / 2);
 			map->coors[i][j].y = map->coors[i][j].y * map->dxy + (glib->y / 2);
-			map->coors[i][j].z = map->coors[i][j].z * map->dz;
+			map->coors[i][j].z = map->coors[i][j].z;
 			j++;
 		}
 		i++;

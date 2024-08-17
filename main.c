@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 13:52:54 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:55:24 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void ft_init_map(t_map *map)
 	map->dx = 400;
 	map->dy = 300;
 	map->dxy = 10;
-	map->dz = 10;
+	map->dz = 1;
 	map->ax = 0;
 	map->ay = 0;
 	map->axy = 0;
@@ -123,11 +123,15 @@ void ft_manipulate_img(t_glib *glib, char o, float v)
 	// manipulate img based on operation and value passed
 	if (o == 'x')
 	{
-		ft_sh_x(glib, glib->map->coors_tr, v);
+		glib->map->dx += v;
+		ft_map_transform_2(glib);
+		printf("%d\n", glib->map->dx);
 	}
 	if (o == 'y')
 	{
-		ft_sh_y(glib, glib->map->coors_tr, v);
+		glib->map->dy += v;
+		ft_map_transform_2(glib);
+		printf("%d\n", glib->map->dy);
 	}
 	if (o == '+')
 	{

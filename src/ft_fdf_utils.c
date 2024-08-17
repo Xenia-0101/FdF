@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:53:06 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/14 18:20:24 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:00:17 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int ft_get_colour(int r, int g, int b, int a)
 void ft_put_point(t_glib *glib, int p[2])
 {
 	int c = ft_get_colour(0, 0,255,255);
-	if ((p[0] > 1 && p[1] > 1) && !(p[0] > glib->x || p[1] > glib->y))
+	if ((p[0] > 10 && p[1] > 10) && !(p[0] > (glib->x - 10) || p[1] > (glib->y - 10)))
 		mlx_put_pixel(glib->img, p[0], p[1], c);
 }
 

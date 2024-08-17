@@ -84,7 +84,7 @@ int get_colour(int r, int g, int b, int a);
 void ft_put_point(t_glib *glib, int p[2]);
 void ft_reset_img(t_glib *glib);
 // math
-void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3]);
+void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3], float dz);
 void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
 void ft_set_isoR(float R[3][3]);
 void ft_set_rzR(float R[3][3], float t);
