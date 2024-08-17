@@ -82,15 +82,16 @@ void ft_draw(t_glib *glib, t_map *map);
 void ft_manipulate_img(t_glib *glib, char o, float v);
 void keyboard_hook(mlx_key_data_t keydata, void *param);
 int ft_map_transform(t_glib *glib);
-int ft_map_transform_2(t_glib *glib);
+int ft_map_transform(t_glib *glib);
 void ft_point_shift(t_glib *glib);
 int ft_map_parse(t_glib *glib, char *filename);
-void ft_map_render(t_glib *glib);
+void ft_manipulate_img(t_glib *glib, char o, float v);
 // utils
 // int get_colour(int r, int g, int b);
 int get_colour(int r, int g, int b, int a);
 void ft_put_point(t_glib *glib, int p[2]);
 void ft_reset_img(t_glib *glib);
+int ft_count_spaces(char *s);
 // math
 void ft_pnt_by_mtrx(t_point p, t_point *q, t_change d, float R[3][3]);
 void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
