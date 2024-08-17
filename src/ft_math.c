@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:32:56 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 14:39:43 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:05:30 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void ft_init_R(float *R[3][3])
 		i++;
 	}
 }
-void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3], float dz)
+void ft_pnt_by_mtrx(t_point p, t_point *q, t_change d, float R[3][3])
 {
-		q->x = R[0][0] * p.x + R[0][1] * p.y + R[0][2] * (p.z * dz);
-		q->y = R[1][0] * p.x + R[1][1] * p.y + R[1][2] * (p.z * dz);
-		q->z = R[2][0] * p.x + R[2][1] * p.y + R[2][2] * (p.z * dz);
+		q->x = R[0][0] * (p.x * d.dxy) + R[0][1] * (p.y * d.dxy) + R[0][2] * (p.z * d.dz);
+		q->y = R[1][0] * (p.x * d.dxy) + R[1][1] * (p.y * d.dxy) + R[1][2] * (p.z * d.dz);
+		q->z = R[2][0] * (p.x * d.dxy) + R[2][1] * (p.y * d.dxy) + R[2][2] * (p.z * d.dz);
 }
 
 void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3])

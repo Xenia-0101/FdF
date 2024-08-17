@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:08:40 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 14:50:09 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:49:56 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,9 +175,9 @@ void ft_str_z(t_glib *glib, float v)
 {
 	// change z in coors
 	// calculate projection
-	glib->map->dz += v;
+	glib->map->dd.dz += v;
 	ft_map_transform_2(glib);
-	printf("%.1f\n", glib->map->dz);
+	printf("%.1f\n", glib->map->dd.dz);
 	// shift to original place
 }
 

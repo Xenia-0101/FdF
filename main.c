@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 14:55:24 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 16:03:30 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ void ft_init_map(t_map *map)
 	map->rc = 0;
 	map->step_xy = 10;
 	map->step_z = 0.1;
-	map->dx = 400;
-	map->dy = 300;
-	map->dxy = 10;
-	map->dz = 1;
+
+	map->dd.dx = 400;
+	map->dd.dy = 300;
+	map->dd.dxy = 1;
+	map->dd.dz = 1;
+
 	map->ax = 0;
 	map->ay = 0;
 	map->axy = 0;
@@ -123,27 +125,27 @@ void ft_manipulate_img(t_glib *glib, char o, float v)
 	// manipulate img based on operation and value passed
 	if (o == 'x')
 	{
-		glib->map->dx += v;
+		glib->map->dd.dx += v;
 		ft_map_transform_2(glib);
-		printf("%d\n", glib->map->dx);
+		printf("%d\n", glib->map->dd.dx);
 	}
 	if (o == 'y')
 	{
-		glib->map->dy += v;
+		glib->map->dd.dy += v;
 		ft_map_transform_2(glib);
-		printf("%d\n", glib->map->dy);
+		printf("%d\n", glib->map->dd.dy);
 	}
 	if (o == '+')
 	{
-		ft_zoom_in(glib, v);
-	}
-	if (o == '-')
-	{
-		ft_zoom_out(glib, v);
+		glib->map->dd.dxy += v;
+		ft_map_transform_2(glib);
+		printf("%.1f\n", glib->map->dd.dxy);
 	}
 	if (o == 'z')
 	{
-		ft_str_z(glib, v);
+		glib->map->dd.dz += v;
+		ft_map_transform_2(glib);
+		printf("%.1f\n", glib->map->dd.dz);
 	}
 	if (o == 'a')
 	{
@@ -167,6 +169,7 @@ int32_t main(int argc, char **argv)
 	char *file;
 	t_glib glib;
 	t_map	map;
+	t_change d;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);
@@ -176,6 +179,7 @@ int32_t main(int argc, char **argv)
 		return (EXIT_FAILURE);
 
 	ft_init_glib(&glib);
+	map.dd = d;
 	ft_init_map(&map);
 
 	glib.mlx = mlx_init(glib.x, glib.y, "MLX42 Library", true);
@@ -198,7 +202,7 @@ int32_t main(int argc, char **argv)
 	ft_map_render(&glib);
 	ft_map_transform(&glib);
 
-	// display data
+	// // display data
 	ft_draw(&glib, &map);
 
 	// **** **** **** **** //

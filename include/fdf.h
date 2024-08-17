@@ -15,6 +15,13 @@
 #define SGN(_x) ((_x) < 0 ? -1 : \
 						 ((_x) > 0 ? 1 : 0))
 
+typedef struct s_change
+{
+	int		dx;
+	int		dy;
+	float	dz;
+	float	dxy;
+}	t_change;
 
 typedef struct s_point
 {
@@ -35,11 +42,12 @@ typedef struct s_map
 	int			rc; // row count
 	double		step_z; // stretch vertically
 	double		step_xy; // stretch horizontally
+	t_change	dd;
 
-	int			dx;		// init to scr x / 2
-	int			dy;		// init to scr y / 2
-	float		dz;		// init to 10
-	float		dxy;	// init to 10;
+	// int			dx;		// init to scr x / 2
+	// int			dy;		// init to scr y / 2
+	// float		dz;		// init to 10
+	// float		dxy;	// init to 10;
 	float		ax;		// rot angle around x axis, init to 0
 	float		ay;		// rot angle around y axis, init to 0
 	float		axy;		// rot angle around x=y axis, init to 0
@@ -84,7 +92,7 @@ int get_colour(int r, int g, int b, int a);
 void ft_put_point(t_glib *glib, int p[2]);
 void ft_reset_img(t_glib *glib);
 // math
-void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3], float dz);
+void ft_pnt_by_mtrx(t_point p, t_point *q, t_change d, float R[3][3]);
 void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
 void ft_set_isoR(float R[3][3]);
 void ft_set_rzR(float R[3][3], float t);
