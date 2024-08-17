@@ -40,9 +40,9 @@ typedef struct s_map
 	int			dy;		// init to scr y / 2
 	float		dz;		// init to 10
 	float		dxy;	// init to 10;
-	int			ax;		// rot angle around x axis, init to 0
-	int			ay;		// rot angle around y axis, init to 0
-	int			az;		// rot angle around z axis, init to 0
+	float		ax;		// rot angle around x axis, init to 0
+	float		ay;		// rot angle around y axis, init to 0
+	float		axy;		// rot angle around x=y axis, init to 0
 }	t_map;
 
 typedef struct s_glib
@@ -74,6 +74,7 @@ void ft_draw(t_glib *glib, t_map *map);
 void ft_manipulate_img(t_glib *glib, char o, float v);
 void keyboard_hook(mlx_key_data_t keydata, void *param);
 int ft_map_transform(t_glib *glib);
+int ft_map_transform_2(t_glib *glib);
 void ft_point_shift(t_glib *glib);
 int ft_map_parse(t_glib *glib, char *filename);
 void ft_map_render(t_glib *glib);
@@ -84,10 +85,11 @@ void ft_put_point(t_glib *glib, int p[2]);
 void ft_reset_img(t_glib *glib);
 // math
 void ft_pnt_by_mtrx(t_point p, t_point *q, float R[3][3]);
-void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3], float *R[3][3]);
-void ft_set_isoR(float *R[3][3]);
-void ft_set_rzR(float *R[3][3], float t);
-void ft_set_rxR(float *R[3][3], float t);
+void ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
+void ft_set_isoR(float R[3][3]);
+void ft_set_rzR(float R[3][3], float t);
+void ft_set_rxR(float R[3][3], float t);
+void ft_set_ryR(float R[3][3], float t);
 // manipulations
 void ft_sh_x(t_glib *glib, t_point **c, float v);
 void ft_sh_y(t_glib *glib, t_point **c, float v);
@@ -95,5 +97,7 @@ void ft_zoom_in(t_glib *glib, float v);
 void ft_zoom_out(t_glib *glib, float v);
 void ft_str_z(t_glib *glib, float v);
 void ft_rotate_x(t_glib *glib, float v);
+void ft_rotate_y(t_glib *glib, float v);
+void ft_rotate_xy(t_glib *glib, float v);
 
 #endif

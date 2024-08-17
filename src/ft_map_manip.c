@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:08:40 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 20:45:44 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:00:59 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ prepare the poinits:
 	-- multiply by dxy								DONE (ft_map_render)
 	-- modify by dz									DONE (ft_map_render)
 
+
+// The following calculation has two options: firs is the initialization one,
+// where coors_tr are calculated using isometric projection transformation.
+// The other option is used for map transformation by the user.
+
 calculate the projection:
-	-- multiply each point by transformation matrix
-		-- transformation matrix: projR * rot x * rot y * rot z
+	-- multiply each point by transformation matrix				DONE (ft_map_transform, ft_map_transform_2)
+		-- transformation matrix: tR * rot x * rot y * rot z
 	-- NEED TO HAVE:
-		* transformation matrix:
-			-- glib.tR --> float[3][3]
-				- init to isometric transformation;
-				- change later ?
+		* transformation matrix									DONE (glib.tR --> float[3][3])
+			- init to isometric projection;
+		* rotation matrices										DONE (ft_math.c)
 
 
 shift to the correct position:
@@ -200,35 +204,19 @@ void ft_str_z(t_glib *glib, float v)
 
 void ft_rotate_x(t_glib *glib, float v)
 {
-	int i;
-	int j;
-	t_map *map = glib->map;
-	double mid_x;
-	double mid_y;
-	double mid_nx;
-	double mid_ny;
-	mid_x = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_y = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-	printf("00 mid x y: %.1f %.1f\n", mid_x, mid_y);
-
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			// ft_pnt_by_mtrx(glib->map->coors_tr[i][j], &(glib->map->coors_tr[i][j]), glib->rxR);
-			// printf("%.1f ", glib->map->coors_tr[i][j].x);
-			j++;
-		}
-		// printf("\n");
-		i++;
-	}
-	mid_nx = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_ny = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-	printf("01 mid x y: %.1f %.1f\n", mid_nx, mid_ny);
-	// ft_point_shift(glib);
-	ft_sh_x(glib, map->coors_tr, mid_nx);
-	ft_sh_y(glib, map->coors_tr, mid_ny);
-	printf("02 mid x y: %.1f %.1f\n", 400 - map->coors_tr[map->rc / 2][map->rl / 2].x, 300 - map->coors_tr[map->rc / 2][map->rl / 2].y);
+	glib->map->ax += v;
+	ft_map_transform_2(glib);
+	printf("%.1f\n", glib->map->ax);
+}
+void ft_rotate_y(t_glib *glib, float v)
+{
+	glib->map->ay += v;
+	ft_map_transform_2(glib);
+	printf("%.1f\n", glib->map->ay);
+}
+void ft_rotate_xy(t_glib *glib, float v)
+{
+	glib->map->axy += v;
+	ft_map_transform_2(glib);
+	printf("%.1f\n", glib->map->axy);
 }

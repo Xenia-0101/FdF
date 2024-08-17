@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/16 20:44:56 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 13:52:54 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void ft_init_glib(t_glib *glib)
 	glib->mlx = 0;
 	glib->img = 0;
 	glib->map = 0;
-	// ft_init_glib_tR(glib);
 	ft_init_glib_tR(glib);
 	glib->x = 800;
 	glib->y = 600;
@@ -61,7 +60,7 @@ void ft_init_map(t_map *map)
 	map->dz = 10;
 	map->ax = 0;
 	map->ay = 0;
-	map->az = 0;
+	map->axy = 0;
 }
 void ft_free_map_data_s(t_map *map)
 {
@@ -145,6 +144,14 @@ void ft_manipulate_img(t_glib *glib, char o, float v)
 	if (o == 'a')
 	{
 		ft_rotate_x(glib, v);
+	}
+	if (o == 'w')
+	{
+		ft_rotate_y(glib, v);
+	}
+	if (o == 'q')
+	{
+		ft_rotate_xy(glib, v);
 	}
 	memset(glib->img->pixels, 0x00, glib->img->width * glib->img->height * sizeof (int32_t));
 	ft_draw(glib, glib->map);

@@ -20,11 +20,6 @@ int ft_map_transform(t_glib *glib)
 	int j;
 	float mid_x;
 	float mid_y;
-	float tempR[3][3];
-	float rotX[3][3];
-
-	ft_set_rxR(&rotX, 0);
-	// ft_mtrx_by_mtrx(glib->tR, rotX, &tempR);
 
 	map = glib->map;
 	i = 0;
@@ -34,6 +29,63 @@ int ft_map_transform(t_glib *glib)
 	{
 		if (!(map->coors_tr[i] = (t_point *)ft_calloc(map->rl, sizeof (t_point))))
 			return (-1);
+		j = 0;
+		while (j < map->rl)
+		{
+			ft_pnt_by_mtrx(map->coors[i][j], &(map->coors_tr[i][j]), glib->tR);
+			map->coors_tr[i][j].z = map->coors[i][j].z;		// keep z the same for z manipulation and repeated calculation
+			j++;
+		}
+		i++;
+	}
+	mid_x = map->coors_tr[map->rc/2][map->rl/2].x;
+	mid_y = map->coors_tr[map->rc/2][map->rl/2].y;
+	ft_sh_x(glib, map->coors_tr, map->dx - mid_x);
+	ft_sh_y(glib, map->coors_tr, map->dy - mid_y);
+	// printf("first point x y: %.1f %.1f\n", map->coors_tr[0][0].x, map->coors_tr[0][0].y);
+	// printf("mid point x y: %.1f %.1f\n", map->coors_tr[map->rc/2][map->rl/2].x, map->coors_tr[map->rc/2][map->rl/2].y);
+	// printf("last point x y: %.1f %.1f\n", map->coors_tr[(map->rc)-1][(map->rl)-1].x, map->coors_tr[(map->rc)-1][(map->rl)-1].y);
+	printf("\n");
+	return (1);
+}
+
+int ft_map_transform_2(t_glib *glib)
+{
+	printf("Map transform 2...\n");
+	t_map *map;
+	int i;
+	int j;
+	float mid_x;
+	float mid_y;
+	float rotX[3][3];
+	float rotY[3][3];
+	float rotZ[3][3];
+
+	ft_set_isoR(glib->tR);
+	if (glib->map->ax != 0)
+	{
+		ft_set_rxR(rotX, glib->map->ax);
+		ft_mtrx_by_mtrx(glib->tR, rotX);
+	}
+	if (glib->map->ay != 0)
+	{
+		ft_set_ryR(rotY, glib->map->ay);
+		ft_mtrx_by_mtrx(glib->tR, rotY);
+	}
+	if (glib->map->axy != 0)
+	{
+		ft_set_rzR(rotZ, -45);
+		ft_mtrx_by_mtrx(glib->tR, rotZ);
+		ft_set_rxR(rotX, glib->map->axy);
+		ft_mtrx_by_mtrx(glib->tR, rotX);
+		ft_set_rzR(rotZ, 45);
+		ft_mtrx_by_mtrx(glib->tR, rotZ);
+	}
+
+	map = glib->map;
+	i = 0;
+	while (i < map->rc)
+	{
 		j = 0;
 		while (j < map->rl)
 		{
