@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:16:19 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 11:59:48 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:04:14 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,9 @@ void	ft_map_recalc(t_glib *glib, char o, float v);
 void	ft_map_transform(t_glib *glib);
 // ft_math_bresenham.c
 void	ft_math_bresenham(t_glib *glib, int start[2], int end[2]);
+// ft_math_mtrx_calc.c
+void	ft_pnt_by_mtrx(t_glib *glib, t_point p, t_point *q);
+void	ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
 // ft_math_set_mtrx.c
 void	ft_set_iso_mtrx(float R[3][3]);
 void	ft_set_rx_mtrx(float R[3][3], float t);
@@ -108,8 +111,6 @@ void	ft_set_rz_mtrx(float R[3][3], float t);
 float	ft_rad(int i);
 int		ft_abs(int i);
 int		ft_sgn(int i);
-void	ft_pnt_by_mtrx(t_glib *glib, t_point p, t_point *q);
-void	ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
 // keyboard_hook.c
 void	keyboard_hook(mlx_key_data_t keydata, void *param);
 

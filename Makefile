@@ -29,6 +29,7 @@ SRC := \
 		src/ft_map_recalc.c \
 		src/ft_map_transform.c \
 		src/ft_math_bresenham.c \
+		src/ft_math_mtrx_calc.c \
 		src/ft_math_set_mtrx.c \
 		src/ft_math_utils.c \
 		src/keyboard_hook.c \
