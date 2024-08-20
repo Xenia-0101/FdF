@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:21:20 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 11:21:30 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:19:40 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ static void	ft_fdf_init_tmtrx(t_glib *glib);
 /**
  * @brief Initialise graphic library attributes
  *
+ * glib.proj - sets the projection type:
+ * 	1 - isometric
+ * 	2 - oblique
  * glib.x & glib.y = screen size
  *
  * @param glib Data struct
@@ -29,6 +32,9 @@ void	ft_fdf_init_glib(t_glib *glib)
 	glib->mlx = 0;
 	glib->img = 0;
 	glib->map = 0;
+	glib->proj = 1;
+	glib->oa = 0;
+	glib->ob = 0;
 	glib->x = 800;
 	glib->y = 600;
 }

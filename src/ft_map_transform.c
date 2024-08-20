@@ -77,7 +77,10 @@ static void	ft_set_matrix(t_glib *glib)
 {
 	float	temp_r[3][3];
 
-	ft_set_iso_mtrx(glib->t_mtrx);
+	if (glib->proj == 1)
+		ft_set_iso_mtrx(glib->t_mtrx);
+	else
+		ft_set_obl_mtrx(glib, glib->t_mtrx);
 	if (glib->map->ax != 0)
 	{
 		ft_set_rx_mtrx(temp_r, glib->map->ax);

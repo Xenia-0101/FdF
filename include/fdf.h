@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:16:19 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 12:04:14 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 13:21:20 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ typedef struct s_glib
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 	t_map		*map;
+	int			proj;
+	int			oa; // oblique proj param
+	int			ob;	// oblique proj param
 	float		t_mtrx[3][3]; // isometric transformation
 	int			x;
 	int			y;
@@ -103,6 +106,7 @@ void	ft_math_bresenham(t_glib *glib, int start[2], int end[2]);
 void	ft_pnt_by_mtrx(t_glib *glib, t_point p, t_point *q);
 void	ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);
 // ft_math_set_mtrx.c
+void	ft_set_obl_mtrx(t_glib *glib, float R[3][3]);
 void	ft_set_iso_mtrx(float R[3][3]);
 void	ft_set_rx_mtrx(float R[3][3], float t);
 void	ft_set_ry_mtrx(float R[3][3], float t);
