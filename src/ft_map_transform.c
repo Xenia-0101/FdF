@@ -12,24 +12,6 @@
 
 #include "fdf.h"
 
-static int ft_allocate_coors_tr(t_glib *glib)
-{
-	t_map *map;
-	int i;
-
-	map = glib->map;
-	i = 0;
-	if (!(map->coors_tr = (t_point **)ft_calloc(map->rc, sizeof (t_point *))))
-		return (0);
-	while (i < map->rc)
-	{
-		if (!(map->coors_tr[i] = (t_point *)ft_calloc(map->rl, sizeof (t_point))))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 static void ft_set_matrix(t_glib *glib)
 {
 	float tempR[3][3];

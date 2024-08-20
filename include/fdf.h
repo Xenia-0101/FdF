@@ -40,14 +40,9 @@ typedef struct s_map
 
 	int			rl; // row length
 	int			rc; // row count
-	double		step_z; // stretch vertically
 	double		step_xy; // stretch horizontally
 	t_change	dd;
 
-	// int			dx;		// init to scr x / 2
-	// int			dy;		// init to scr y / 2
-	// float		dz;		// init to 10
-	// float		dxy;	// init to 10;
 	float		ax;		// rot angle around x axis, init to 0
 	float		ay;		// rot angle around y axis, init to 0
 	float		axy;		// rot angle around x=y axis, init to 0
@@ -108,5 +103,9 @@ void ft_str_z(t_glib *glib, float v);
 void ft_rotate_x(t_glib *glib, float v);
 void ft_rotate_y(t_glib *glib, float v);
 void ft_rotate_xy(t_glib *glib, float v);
+// init
+void	ft_init_glib_tmtrx(t_glib *glib);
+void	ft_init_glib(t_glib *glib);
+void	ft_init_map(t_map *map);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_math.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 15:32:56 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 19:34:20 by xenia            ###   ########.fr       */
+/*   Updated: 2024/08/20 09:18:54 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void ft_set_rzR(float R[3][3], float v)
 void ft_set_ryR(float R[3][3], float v)
 {
 	float t = v * 3.14 / 180;
-	// rotate around z
 
 	R[0][0] = cos(t);
 	R[0][1] = 0.0;

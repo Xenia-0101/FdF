@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 08:07:09 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:34:19 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include "include/fdf.h"
 
 // **** INIT FUNCTIONS **** //
-void ft_init_glib_tR(t_glib *glib)
+/* void ft_init_glib_tmtrx(t_glib *glib)
 {
 	glib->tR[0][0] = sqrt(2) / 2;
 	glib->tR[0][1] = -sqrt(2) / 2;
@@ -40,7 +40,7 @@ void ft_init_glib(t_glib *glib)
 	glib->mlx = 0;
 	glib->img = 0;
 	glib->map = 0;
-	ft_init_glib_tR(glib);
+	ft_init_glib_tmtrx(glib);
 	glib->x = 800;
 	glib->y = 600;
 }
@@ -63,7 +63,9 @@ void ft_init_map(t_map *map)
 	map->ax = 0;
 	map->ay = 0;
 	map->axy = 0;
-}
+} */
+
+// Free functions
 void ft_free_map_data_s(t_map *map)
 {
 	int i;
