@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 07:55:32 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:01:02 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_bresenham(t_glib *glib, int start[2], int end[2])
 /**
  * @brief Algorithm to draw a more horisontal line.
  *
- * * Uses Bresenham's algorithm to draw a line that is more vertical
- * (passes through octants II, III, VI, VII).
+ * * Uses Bresenham's algorithm to draw a line that is more horisontal
+ * (passes through octants VIII, I, IV, V).
  *
  * @param glib Data struct
  * @param line Line struct
