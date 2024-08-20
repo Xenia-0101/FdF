@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bresenham.c                                     :+:      :+:    :+:   */
+/*   ft_math_bresenham.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 08:16:45 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:38:14 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		ft_bresenham(t_glib *glib, int start[2], int end[2]);
+void		ft_math_bresenham(t_glib *glib, int start[2], int end[2]);
 static void	ft_bresenham_v(t_glib *glib, t_line *line);
 static void	ft_bresenham_h(t_glib *glib, t_line *line);
 static void	ft_init_line(t_line *l, int p1[2], int p2[2]);
@@ -24,11 +24,11 @@ static void	ft_init_line(t_line *l, int p1[2], int p2[2]);
  * between two points.
  * - dx and dy determine if the line is more vertical or more horisontal.
  *
- * @param glib Data struct
- * @param start Initial point
- * @param end End point
+ * @param glib	Data struct
+ * @param start	Initial point
+ * @param end	End point
  */
-void	ft_bresenham(t_glib *glib, int start[2], int end[2])
+void	ft_math_bresenham(t_glib *glib, int start[2], int end[2])
 {
 	t_line	line;
 
@@ -61,7 +61,7 @@ static void	ft_bresenham_h(t_glib *glib, t_line *line)
 		if (line->err >= 0)
 		{
 			line->point[1] += line->dy_sgn;
-			line->err += line->errInc;
+			line->err += line->err_inc;
 		}
 		line->point[0] += line->dx_sgn;
 	}
@@ -85,7 +85,7 @@ static void	ft_bresenham_v(t_glib *glib, t_line *line)
 		if (line->err >= 0)
 		{
 			line->point[0] += line->dx_sgn;
-			line->err += line->errInc;
+			line->err += line->err_inc;
 		}
 		line->point[1] += line->dy_sgn;
 	}
@@ -109,20 +109,20 @@ static void	ft_init_line(t_line *l, int p1[2], int p2[2])
 	l->end[1] = p2[1];
 	l->point[0] = p1[0];
 	l->point[1] = p1[1];
-	l->dx = ABS(l->end[0] - l->start[0]);
-	l->dy = ABS(l->end[1] - l->start[1]);
-	l->dx_sgn = SGN(l->end[0] - l->start[0]);
-	l->dy_sgn = SGN(l->end[1] - l->start[1]);
+	l->dx = ft_abs(l->end[0] - l->start[0]);
+	l->dy = ft_abs(l->end[1] - l->start[1]);
+	l->dx_sgn = ft_sgn(l->end[0] - l->start[0]);
+	l->dy_sgn = ft_sgn(l->end[1] - l->start[1]);
 	if (l->dx >= l->dy)
 	{
 		l->slope = 2 * l->dy;
 		l->err = -l->dx;
-		l->errInc = -2 * l->dx;
+		l->err_inc = -2 * l->dx;
 	}
 	else
 	{
 		l->slope = 2 * l->dx;
 		l->err = -l->dy;
-		l->errInc = -2 * l->dy;
+		l->err_inc = -2 * l->dy;
 	}
 }

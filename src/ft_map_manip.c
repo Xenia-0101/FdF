@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_manip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:08:40 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 19:11:18 by xenia            ###   ########.fr       */
+/*   Updated: 2024/08/20 11:43:42 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ prepare the poinits:
 		-- original coors start at the origin		DONE (ft_map_parse)
 	-- multiply by dxy								DONE (ft_map_render)
 	-- modify by dz				DONE (ft_map_transform -> ft_pnt_by_mtrx)
-
 
 // The following calculation has two options: firs is the initialization one,
 // where coors_tr are calculated using isometric projection transformation.
@@ -40,8 +39,6 @@ shift to the correct position:
 	-- at beginning -> centre of the screen
 		-- set init dx & dy offset to mid scr
 	-- later -> based on dx & dy
-
-
 
 Manipulations:
 
@@ -79,11 +76,11 @@ rotate around x, y, x=y:
 		* render map
 */
 
-
-void ft_sh_x(t_glib *glib, t_point **c, float v)
+void	ft_sh_x(t_glib *glib, t_point **c, float v)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < glib->map->rc)
 	{
@@ -97,10 +94,11 @@ void ft_sh_x(t_glib *glib, t_point **c, float v)
 	}
 }
 
-void ft_sh_y(t_glib *glib, t_point **c, float v)
+void	ft_sh_y(t_glib *glib, t_point **c, float v)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < glib->map->rc)
 	{

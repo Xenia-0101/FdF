@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:21:20 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 09:44:53 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:21:30 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_fdf_init_glib(t_glib *glib)
  *
  * map.step_xy - initial point spread
  * map.dd.dx & map.dd.dy - should be half the screen
- * map.dd.dxy - changable point spread, init to 1
+ * map.dd.dxy - midofyable point spread, init to 1
  * map.dd.dz - initial z stretch, init to 1
  * map.ax, map.ay, map.axy - initial rotation angles
  *
@@ -47,7 +47,6 @@ void	ft_fdf_init_glib(t_glib *glib)
 void	ft_fdf_init_map(t_map *map)
 {
 	map->data_s = 0;
-	map->data_i = 0;
 	map->coors = 0;
 	map->coors_tr = 0;
 	map->rl = 0;
@@ -69,13 +68,13 @@ void	ft_fdf_init_map(t_map *map)
  */
 static void	ft_fdf_init_tmtrx(t_glib *glib)
 {
-	glib->tR[0][0] = sqrt(2) / 2;
-	glib->tR[0][1] = -sqrt(2) / 2;
-	glib->tR[0][2] = 0;
-	glib->tR[1][0] = sqrt(6) / 6;
-	glib->tR[1][1] = sqrt(6) / 6;
-	glib->tR[1][2] = -sqrt(6) / 3;
-	glib->tR[2][0] = sqrt(3) / 3;
-	glib->tR[2][1] = sqrt(3) / 3;
-	glib->tR[2][2] = sqrt(3) / 3;
+	glib->t_mtrx[0][0] = sqrt(2) / 2;
+	glib->t_mtrx[0][1] = -sqrt(2) / 2;
+	glib->t_mtrx[0][2] = 0;
+	glib->t_mtrx[1][0] = sqrt(6) / 6;
+	glib->t_mtrx[1][1] = sqrt(6) / 6;
+	glib->t_mtrx[1][2] = -sqrt(6) / 3;
+	glib->t_mtrx[2][0] = sqrt(3) / 3;
+	glib->t_mtrx[2][1] = sqrt(3) / 3;
+	glib->t_mtrx[2][2] = sqrt(3) / 3;
 }

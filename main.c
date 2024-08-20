@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 09:46:20 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:03:32 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int32_t main(int argc, char **argv)
 	ft_map_transform(&glib);
 
 	// // display data
-	ft_draw(&glib);
+	ft_map_draw(&glib);
 
 	// **** **** **** **** //
 

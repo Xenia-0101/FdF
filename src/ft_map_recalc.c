@@ -6,15 +6,16 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 20:02:03 by xenia             #+#    #+#             */
-/*   Updated: 2024/08/20 08:07:47 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 11:55:02 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-void ft_manipulate_img(t_glib *glib, char o, float v)
+void	ft_map_recalc(t_glib *glib, char o, float v)
 {
+	int32_t	size;
+
 	if (o == 'x')
 		glib->map->dd.dx += v;
 	if (o == 'y')
@@ -30,7 +31,7 @@ void ft_manipulate_img(t_glib *glib, char o, float v)
 	if (o == 'q')
 		glib->map->axy += v;
 	ft_map_transform(glib);
-	memset(glib->img->pixels, 0x00, glib->img->width * glib->img->height * sizeof (int32_t));
-	ft_draw(glib);
+	size = glib->img->width * glib->img->height * sizeof (int32_t);
+	memset(glib->img->pixels, 0x00, size);
+	ft_map_draw(glib);
 }
-

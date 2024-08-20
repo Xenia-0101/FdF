@@ -20,17 +20,18 @@ LIBFT_NAME = libft.a
 # *** source code files *** #
 SRC := \
 		main.c \
-		src/ft_bresenham.c \
-		src/ft_draw.c \
-		src/ft_fdf_utils.c \
-		src/keyboard_hook.c \
-		src/ft_map_transform.c \
-		src/ft_map_parse.c \
-		src/ft_math.c \
-		src/ft_map_manip.c \
-		src/ft_map_recalc.c \
-		src/ft_fdf_init.c \
 		src/ft_fdf_free.c \
+		src/ft_fdf_init.c \
+		src/ft_fdf_utils.c \
+		src/ft_map_draw.c \
+		src/ft_map_manip.c \
+		src/ft_map_parse.c \
+		src/ft_map_recalc.c \
+		src/ft_map_transform.c \
+		src/ft_math_bresenham.c \
+		src/ft_math_set_mtrx.c \
+		src/ft_math_utils.c \
+		src/keyboard_hook.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/
