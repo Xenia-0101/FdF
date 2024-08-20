@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 09:34:19 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 09:46:20 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,109 +18,6 @@
 // http://fredericgoset.ovh/mathematiques/courbes/en/bresenham_line.html
 
 #include "include/fdf.h"
-
-// **** INIT FUNCTIONS **** //
-/* void ft_init_glib_tmtrx(t_glib *glib)
-{
-	glib->tR[0][0] = sqrt(2) / 2;
-	glib->tR[0][1] = -sqrt(2) / 2;
-	glib->tR[0][2] = 0;
-
-	glib->tR[1][0] = sqrt(6) / 6;
-	glib->tR[1][1] = sqrt(6) / 6;
-	glib->tR[1][2] = -sqrt(6) / 3;
-
-	glib->tR[2][0] = sqrt(3) / 3;
-	glib->tR[2][1] = sqrt(3) / 3;
-	glib->tR[2][2] = sqrt(3) / 3;
-}
-
-void ft_init_glib(t_glib *glib)
-{
-	glib->mlx = 0;
-	glib->img = 0;
-	glib->map = 0;
-	ft_init_glib_tmtrx(glib);
-	glib->x = 800;
-	glib->y = 600;
-}
-void ft_init_map(t_map *map)
-{
-	map->data_s = 0;
-	map->data_i = 0;
-	map->coors = 0;
-	map->coors_tr = 0;
-	map->rl = 0;
-	map->rc = 0;
-	map->step_xy = 10;
-	map->step_z = 0.1;
-
-	map->dd.dx = 400;
-	map->dd.dy = 300;
-	map->dd.dxy = 1;
-	map->dd.dz = 1;
-
-	map->ax = 0;
-	map->ay = 0;
-	map->axy = 0;
-} */
-
-// Free functions
-void ft_free_map_data_s(t_map *map)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < map->rc)
-	{
-		free(map->data_s[i]);
-		i++;
-	}
-	free(map->data_s);
-}
-void ft_free_coors(t_map *map)
-{
-	int i;
-
-	i = 0;
-	while (i < map->rc)
-	{
-		map->coors[i]->x = 0;
-		map->coors[i]->y = 0;
-		map->coors[i]->z = 0;
-		free(map->coors[i]);
-		i++;
-	}
-	free(map->coors);
-}
-
-void ft_free_coors_tr(t_map *map)
-{
-	int i;
-
-	i = 0;
-	while (i < map->rc)
-	{
-		map->coors_tr[i]->x = 0;
-		map->coors_tr[i]->y = 0;
-		map->coors_tr[i]->z = 0;
-		free(map->coors_tr[i]);
-		i++;
-	}
-	free(map->coors_tr);
-}
-void ft_free_map(t_map *map)
-{
-	ft_free_map_data_s(map);
-	ft_free_coors(map);
-	ft_free_coors_tr(map);
-}
-
-void ft_free_glib(t_glib *glib)
-{
-	glib->x = glib->y = 0;
-}
 
 int32_t main(int argc, char **argv)
 {
@@ -137,9 +34,9 @@ int32_t main(int argc, char **argv)
 	if (file[fl - 1] != 'f' || file[fl - 2] != 'd' || file[fl - 3] != 'f' || file[fl - 4] != '.')
 		return (EXIT_FAILURE);
 
-	ft_init_glib(&glib);
+	ft_fdf_init_glib(&glib);
 	map.dd = d;
-	ft_init_map(&map);
+	ft_fdf_init_map(&map);
 
 	glib.mlx = mlx_init(glib.x, glib.y, "MLX42 Library", true);
 	if (!glib.mlx)
@@ -169,7 +66,6 @@ int32_t main(int argc, char **argv)
 	mlx_loop(glib.mlx);
 	mlx_delete_image(glib.mlx, glib.img);
 	mlx_terminate(glib.mlx);
-	ft_free_glib(&glib);
-	ft_free_map(&map);
+	ft_fdf_free(&glib);
 	return (EXIT_SUCCESS);
 }

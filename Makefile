@@ -30,6 +30,7 @@ SRC := \
 		src/ft_map_manip.c \
 		src/ft_map_recalc.c \
 		src/ft_fdf_init.c \
+		src/ft_fdf_free.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/
