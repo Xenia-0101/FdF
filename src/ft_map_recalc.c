@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_recalc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 20:02:03 by xenia             #+#    #+#             */
-/*   Updated: 2024/08/17 20:02:25 by xenia            ###   ########.fr       */
+/*   Updated: 2024/08/20 08:07:47 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void ft_manipulate_img(t_glib *glib, char o, float v)
 		glib->map->axy += v;
 	ft_map_transform(glib);
 	memset(glib->img->pixels, 0x00, glib->img->width * glib->img->height * sizeof (int32_t));
-	ft_draw(glib, glib->map);
+	ft_draw(glib);
 }
 

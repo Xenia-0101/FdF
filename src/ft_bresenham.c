@@ -6,16 +6,16 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 08:01:02 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 08:16:45 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void		ft_bresenham(t_glib *glib, int start[2], int end[2]);
 static void	ft_bresenham_v(t_glib *glib, t_line *line);
 static void	ft_bresenham_h(t_glib *glib, t_line *line);
 static void	ft_init_line(t_line *l, int p1[2], int p2[2]);
-void		ft_bresenham(t_glib *glib, int start[2], int end[2]);
 
 /**
  * @brief Draws a line connecting two points.

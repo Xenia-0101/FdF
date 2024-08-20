@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
+/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 20:02:22 by xenia            ###   ########.fr       */
+/*   Updated: 2024/08/20 08:07:09 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int32_t main(int argc, char **argv)
 	ft_map_transform(&glib);
 
 	// // display data
-	ft_draw(&glib, &map);
+	ft_draw(&glib);
 
 	// **** **** **** **** //
 

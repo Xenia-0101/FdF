@@ -78,7 +78,7 @@ typedef struct s_line
 }	t_line;
 
 void ft_bresenham(t_glib *glib, int start[2], int end[2]);
-void ft_draw(t_glib *glib, t_map *map);
+void ft_draw(t_glib *glib);
 void ft_manipulate_img(t_glib *glib, char o, float v);
 void keyboard_hook(mlx_key_data_t keydata, void *param);
 int ft_map_transform(t_glib *glib);
