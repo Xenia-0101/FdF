@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 16:03:30 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:02:22 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,49 +120,6 @@ void ft_free_glib(t_glib *glib)
 	glib->x = glib->y = 0;
 }
 
-void ft_manipulate_img(t_glib *glib, char o, float v)
-{
-	// manipulate img based on operation and value passed
-	if (o == 'x')
-	{
-		glib->map->dd.dx += v;
-		ft_map_transform_2(glib);
-		printf("%d\n", glib->map->dd.dx);
-	}
-	if (o == 'y')
-	{
-		glib->map->dd.dy += v;
-		ft_map_transform_2(glib);
-		printf("%d\n", glib->map->dd.dy);
-	}
-	if (o == '+')
-	{
-		glib->map->dd.dxy += v;
-		ft_map_transform_2(glib);
-		printf("%.1f\n", glib->map->dd.dxy);
-	}
-	if (o == 'z')
-	{
-		glib->map->dd.dz += v;
-		ft_map_transform_2(glib);
-		printf("%.1f\n", glib->map->dd.dz);
-	}
-	if (o == 'a')
-	{
-		ft_rotate_x(glib, v);
-	}
-	if (o == 'w')
-	{
-		ft_rotate_y(glib, v);
-	}
-	if (o == 'q')
-	{
-		ft_rotate_xy(glib, v);
-	}
-	memset(glib->img->pixels, 0x00, glib->img->width * glib->img->height * sizeof (int32_t));
-	ft_draw(glib, glib->map);
-}
-
 int32_t main(int argc, char **argv)
 {
 	int fl;
@@ -199,7 +156,6 @@ int32_t main(int argc, char **argv)
 	ft_map_parse(&glib, file);
 
 	// transform coordinates
-	ft_map_render(&glib);
 	ft_map_transform(&glib);
 
 	// // display data

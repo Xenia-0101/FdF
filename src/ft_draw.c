@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:49:05 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 15:51:10 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:03:28 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void ft_draw_h(t_glib *glib, t_map *map)
 			j++;
 		}
 		i++;
-		// printf("***%d\n", i);
 	}
 }
 

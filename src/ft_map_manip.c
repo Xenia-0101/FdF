@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_manip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 18:08:40 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 15:49:56 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:11:18 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ prepare the poinits:
 // The other option is used for map transformation by the user.
 
 calculate the projection:
-	-- multiply each point by transformation matrix				DONE (ft_map_transform, ft_map_transform_2)
+	-- multiply each point by transformation matrix				DONE (ft_map_transform, ft_map_transform)
 		-- transformation matrix: tR * rot x * rot y * rot z
 	-- NEED TO HAVE:
 		* transformation matrix									DONE (glib.tR --> float[3][3])
@@ -112,90 +112,4 @@ void ft_sh_y(t_glib *glib, t_point **c, float v)
 		}
 		i++;
 	}
-}
-
-void ft_zoom_in(t_glib *glib, float v)
-{
-	t_map *map = glib->map;
-	t_point **c = glib->map->coors_tr;
-	int i;
-	int j;
-	double mid_x;
-	double mid_y;
-	double const_x;
-	double const_y;
-
-	mid_x = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_y = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-	const_x = (0.1 * glib->x / 2 + mid_x);
-	const_y = (0.1 * glib->y / 2 + mid_y);
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			c[i][j].x = (c[i][j].x + mid_x) * v - const_x;
-			c[i][j].y = (c[i][j].y + mid_y) * v - const_y;
-			j++;
-		}
-		i++;
-	}
-}
-void ft_zoom_out(t_glib *glib, float v)
-{
-	t_map *map = glib->map;
-	t_point **c = glib->map->coors_tr;
-	int i;
-	int j;
-	double mid_x;
-	double mid_y;
-	double const_x;
-	double const_y;
-
-	mid_x = glib->x / 2 - map->coors_tr[map->rc / 2][map->rl / 2].x;
-	mid_y = glib->y / 2 - map->coors_tr[map->rc / 2][map->rl / 2].y;
-	const_x = mid_x - (glib->x / 2 - (glib->x / 2) * v);
-	const_y = mid_y - (glib->y / 2 - (glib->y / 2) * v);
-	i = 0;
-	while (i < glib->map->rc)
-	{
-		j = 0;
-		while (j < glib->map->rl)
-		{
-			c[i][j].x = (c[i][j].x + mid_x) * v - const_x;
-			c[i][j].y = (c[i][j].y + mid_y) * v - const_y;
-			j++;
-		}
-		i++;
-	}
-}
-
-void ft_str_z(t_glib *glib, float v)
-{
-	// change z in coors
-	// calculate projection
-	glib->map->dd.dz += v;
-	ft_map_transform_2(glib);
-	printf("%.1f\n", glib->map->dd.dz);
-	// shift to original place
-}
-
-void ft_rotate_x(t_glib *glib, float v)
-{
-	glib->map->ax += v;
-	ft_map_transform_2(glib);
-	printf("%.1f\n", glib->map->ax);
-}
-void ft_rotate_y(t_glib *glib, float v)
-{
-	glib->map->ay += v;
-	ft_map_transform_2(glib);
-	printf("%.1f\n", glib->map->ay);
-}
-void ft_rotate_xy(t_glib *glib, float v)
-{
-	glib->map->axy += v;
-	ft_map_transform_2(glib);
-	printf("%.1f\n", glib->map->axy);
 }

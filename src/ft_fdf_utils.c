@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fdf_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:53:06 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/17 15:00:17 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/17 19:27:39 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ void ft_put_point(t_glib *glib, int p[2])
 
 void ft_reset_img(t_glib *glib)
 {
-	printf("resetting img...\n");
 	memset(glib->img->pixels, 0xFF, glib->img->width * glib->img->height * sizeof (int32_t));
+}
+
+int ft_count_spaces(char *s)
+{
+	int i;
+	char **srow;
+
+	srow = ft_split(s, ' ');
+	i = 0;
+	while (srow[i] && (srow[i][0] == '-' || ft_isdigit(srow[i][0])))
+	{
+		free(srow[i]);
+		i++;
+	}
+	if (srow[i])
+		free(srow[i]);
+	free(srow);
+	return (i);
 }

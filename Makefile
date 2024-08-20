@@ -28,7 +28,7 @@ SRC := \
 		src/ft_map_parse.c \
 		src/ft_math.c \
 		src/ft_map_manip.c \
-		src/ft_map_render.c \
+		src/ft_map_recalc.c \
 
 OBJ = $(SRC:.c=.o)
 HEADER = -I ./include/
