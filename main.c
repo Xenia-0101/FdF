@@ -6,14 +6,9 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 11:03:32 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:29:19 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// cmake ./MLX42 -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -B ./MLX42/build
-// make -C ./MLX42/build -j4
-// cc -Wall -Wextra -Werror -g example.c ./MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast
-//
 
 // http://fredericgoset.ovh/mathematiques/courbes/en/bresenham_line.html
 
@@ -59,7 +54,6 @@ int32_t main(int argc, char **argv)
 
 	// // display data
 	ft_map_draw(&glib);
-
 	// **** **** **** **** //
 
 	mlx_key_hook(glib.mlx, &keyboard_hook, &glib);

@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:16:19 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 13:21:20 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:41:48 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,20 @@ typedef struct s_change
 	float	dxy;
 }	t_change;
 
+typedef struct s_col
+{
+	int		dr;
+	int		dg;
+	int		db;
+	int		da;
+}	t_col;
+
 typedef struct s_point
 {
 	float	x;
 	float	y;
 	float	z;
+	long	c;
 }	t_point;
 
 typedef struct s_map
@@ -43,6 +52,13 @@ typedef struct s_map
 	t_point		**coors; // original coordinates
 	t_point		**coors_tr;	// transformed coordinates
 	char		**data_s;
+	// to get colour gradients
+	int			lz; // lowest z
+	int			hz; // highest z
+	long		lc; // colour of lowest z
+	long		hc; // colour of highest z
+	t_col		cc;
+	// ***
 	int			rl; // row length
 	int			rc; // row count
 	double		step_xy; // stretch horizontally
@@ -77,6 +93,7 @@ typedef struct s_line
 	int		slope;
 	int		err;
 	int		err_inc;
+	int		dc;	// colour gradient
 }	t_line;
 
 // ft_fdf_free.c
@@ -85,7 +102,8 @@ void	ft_fdf_free(t_glib *glib);
 void	ft_fdf_init_glib(t_glib *glib);
 void	ft_fdf_init_map(t_map *map);
 // ft_fdf_utils.c
-int		get_colour(int r, int g, int b, int a);
+void print_rgba(int rgba);
+int		ft_get_colour(int r, int g, int b, int a);
 void	ft_put_point(t_glib *glib, int p[2]);
 void	ft_reset_img(t_glib *glib);
 int		ft_count_spaces(char *s);
@@ -101,7 +119,8 @@ void	ft_map_recalc(t_glib *glib, char o, float v);
 // ft_map_transform.c
 void	ft_map_transform(t_glib *glib);
 // ft_math_bresenham.c
-void	ft_math_bresenham(t_glib *glib, int start[2], int end[2]);
+void		ft_math_bresenham(t_glib *glib, t_point start, t_point end);
+// void	ft_math_bresenham(t_glib *glib, int start[2], int end[2]);
 // ft_math_mtrx_calc.c
 void	ft_pnt_by_mtrx(t_glib *glib, t_point p, t_point *q);
 void	ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3]);

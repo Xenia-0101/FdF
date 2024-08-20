@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 09:14:22 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:53:12 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,11 @@ static void	ft_map_to_point(t_glib *glib)
 	t_map	*map;
 
 	map = glib->map;
+	// get first z from data_s -- color grad recording
+	row = ft_split(map->data_s[0], ' ');
+	map->lz = ft_atoi(row[0]);
+	map->hz = ft_atoi(row[0]);
+	ft_free_row(row, map->rl);
 	i = 0;
 	while (i < map->rc)
 	{
@@ -138,6 +143,10 @@ static void	ft_map_to_point(t_glib *glib)
 			map->coors[i][j].x += (glib->x / 2);
 			map->coors[i][j].y += (glib->x / 2);
 			map->coors[i][j].z = ft_atoi(row[j]);
+			if (map->coors[i][j].z < map->lz)
+				map->lz = map->coors[i][j].z;
+			if (map->coors[i][j].z > map->hz)
+				map->hz = map->coors[i][j].z;
 			j++;
 		}
 		ft_free_row(row, map->rl);

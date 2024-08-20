@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:21:20 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 13:19:40 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:28:19 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ void	ft_fdf_init_map(t_map *map)
 	map->data_s = 0;
 	map->coors = 0;
 	map->coors_tr = 0;
+	map->lz = 0;
+	map->hz = 0;
+	map->lc = 0xef8e38;
+	map->hc = 0x108dc7;
+	map->cc.dr = (map->lc >> 24) & 0xFF - (map->hc >> 24) & 0xFF;
+	map->cc.dg = (map->lc >> 16) & 0xFF - (map->hc >> 16) & 0xFF;
+	map->cc.db = (map->lc >> 8) & 0xFF - (map->hc >> 8) & 0xFF;
+	map->cc.da = (map->lc) & 0xFF - (map->hc) & 0xFF;
 	map->rl = 0;
 	map->rc = 0;
 	map->step_xy = 10;

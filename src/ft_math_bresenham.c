@@ -6,16 +6,16 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 11:38:14 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 15:41:52 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		ft_math_bresenham(t_glib *glib, int start[2], int end[2]);
+void		ft_math_bresenham(t_glib *glib, t_point start, t_point end);
 static void	ft_bresenham_v(t_glib *glib, t_line *line);
 static void	ft_bresenham_h(t_glib *glib, t_line *line);
-static void	ft_init_line(t_line *l, int p1[2], int p2[2]);
+static void	ft_init_line(t_line *l, t_point p1, t_point p2);
 
 /**
  * @brief Draws a line connecting two points.
@@ -28,7 +28,7 @@ static void	ft_init_line(t_line *l, int p1[2], int p2[2]);
  * @param start	Initial point
  * @param end	End point
  */
-void	ft_math_bresenham(t_glib *glib, int start[2], int end[2])
+void	ft_math_bresenham(t_glib *glib, t_point start, t_point end)
 {
 	t_line	line;
 
@@ -101,14 +101,14 @@ static void	ft_bresenham_v(t_glib *glib, t_line *line)
  * @param p1 Initial point
  * @param p2 End point
  */
-static void	ft_init_line(t_line *l, int p1[2], int p2[2])
+static void	ft_init_line(t_line *l, t_point p1, t_point p2)
 {
-	l->start[0] = p1[0];
-	l->start[1] = p1[1];
-	l->end[0] = p2[0];
-	l->end[1] = p2[1];
-	l->point[0] = p1[0];
-	l->point[1] = p1[1];
+	l->start[0] = p1.x;
+	l->start[1] = p1.y;
+	l->end[0] = p2.x;
+	l->end[1] = p2.y;
+	l->point[0] = p1.x;
+	l->point[1] = p1.y;
 	l->dx = ft_abs(l->end[0] - l->start[0]);
 	l->dy = ft_abs(l->end[1] - l->start[1]);
 	l->dx_sgn = ft_sgn(l->end[0] - l->start[0]);
@@ -125,4 +125,5 @@ static void	ft_init_line(t_line *l, int p1[2], int p2[2])
 		l->err = -l->dy;
 		l->err_inc = -2 * l->dy;
 	}
+	l->dc = sqrt(l->dx * l->dx + l->dy * l->dy);
 }
