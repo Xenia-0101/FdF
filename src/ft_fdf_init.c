@@ -6,13 +6,13 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:21:20 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 13:19:40 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 09:05:06 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		ft_fdf_init_glib(t_glib *glib);
+void		ft_fdf_init_glib(t_glib *glib, t_map *map);
 void		ft_fdf_init_map(t_map *map);
 static void	ft_fdf_init_tmtrx(t_glib *glib);
 
@@ -26,17 +26,18 @@ static void	ft_fdf_init_tmtrx(t_glib *glib);
  *
  * @param glib Data struct
  */
-void	ft_fdf_init_glib(t_glib *glib)
+void	ft_fdf_init_glib(t_glib *glib, t_map *map)
 {
 	ft_fdf_init_tmtrx(glib);
 	glib->mlx = 0;
 	glib->img = 0;
-	glib->map = 0;
+	glib->map = map;
 	glib->proj = 1;
 	glib->oa = 0;
 	glib->ob = 0;
 	glib->x = 800;
 	glib->y = 600;
+	ft_fdf_init_map(map);
 }
 
 /**
