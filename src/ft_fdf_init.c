@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:21:20 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/21 09:05:06 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 10:20:40 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ void	ft_fdf_init_glib(t_glib *glib, t_map *map)
 	glib->proj = 1;
 	glib->oa = 0;
 	glib->ob = 0;
-	glib->x = 800;
-	glib->y = 600;
+	glib->x = 1920;
+	glib->y = 1080;
 	ft_fdf_init_map(map);
+	map->dd.dx = glib->x / 2;
+	map->dd.dy = glib->y / 2;
 }
 
 /**
@@ -58,11 +60,11 @@ void	ft_fdf_init_map(t_map *map)
 	map->coors_tr = 0;
 	map->rl = 0;
 	map->rc = 0;
-	map->step_xy = 10;
-	map->dd.dx = 400;
-	map->dd.dy = 300;
+	map->step_xy = 40;
+	map->dd.dx = 0;
+	map->dd.dy = 0;
 	map->dd.dxy = 1;
-	map->dd.dz = 1;
+	map->dd.dz = 4;
 	map->ax = 0;
 	map->ay = 0;
 	map->axy = 0;

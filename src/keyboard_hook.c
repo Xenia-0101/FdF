@@ -6,11 +6,63 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:53:50 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 13:30:14 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:21:36 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/**
+ * @brief Set new parameter value and redraw map.
+ *
+ * +--------+-------------------------------------------|
+ * | Key	| Function									|
+ * +--------+-------------------------------------------|
+ * | Left	| Shift map to the left 					|
+ * +--------+-------------------------------------------|
+ * | Right	| Shift map to the right					|
+ * +--------+-------------------------------------------|
+ * | Down	| Shift map down							|
+ * +--------+-------------------------------------------|
+ * | Up		| Shift map up								|
+ * +--------+-------------------------------------------|
+ * | +		| Zoom in									|
+ * +--------+-------------------------------------------|
+ * | -		| Zoom out									|
+ * +--------+-------------------------------------------|
+ * | z		| Increase z coordinate						|
+ * +--------+-------------------------------------------|
+ * | x		| Decrease z coordinate						|
+ * +--------+-------------------------------------------|
+ * | a		| Rotate clockwise around x-axis			|
+ * +--------+-------------------------------------------|
+ * | d		| Rotate counterclockwise around x-axis		|
+ * +--------+-------------------------------------------|
+ * | w		| Rotate clockwise around y-axis			|
+ * +--------+-------------------------------------------|
+ * | s		| Rotate counterclockwise around y-axis		|
+ * +--------+-------------------------------------------|
+ * | q		| Rotate clockwise around x = y line		|
+ * +--------+-------------------------------------------|
+ * | e		| Rotate counterclockwise around x = y line |
+ * +--------+-------------------------------------------|
+ * | 1		| Toggle projection type					|
+ * +--------+-------------------------------------------|
+ * | 4		| Oblique projection - increase theta		|
+ * +--------+-------------------------------------------|
+ * | 5		| Oblique projection - decrease theta		|
+ * +--------+-------------------------------------------|
+ * | 7		| Oblique projection - increase param		|
+ * +--------+-------------------------------------------|
+ * | 8		| Oblique projection - decrease param		|
+ * +--------+-------------------------------------------|
+ *
+ * @param key	Key pressed
+ * @param param	pointer to Data struct
+ */
+void		keyboard_hook(mlx_key_data_t key, void *param);
+static void	keyboard_hook_2(mlx_key_data_t key, t_glib *glib);
+static void	keyboard_hook_1(mlx_key_data_t key, t_glib *glib);
 
 static void	keyboard_hook_1(mlx_key_data_t key, t_glib *glib)
 {
@@ -46,15 +98,15 @@ static void	keyboard_hook_2(mlx_key_data_t key, t_glib *glib)
 		ft_map_recalc(glib, 'q', 1);
 	if (key.key == MLX_KEY_E)
 		ft_map_recalc(glib, 'q', -1);
-	if (key.key == 321)		// numeric keyboard 1
+	if (key.key == 321)
 		ft_map_recalc(glib, '1', 1);
-	if (key.key == 327)		// numeric keyboard 7
+	if (key.key == 327)
 		ft_map_recalc(glib, '7', 1);
-	if (key.key == 328)		// numeric keyboard 8
+	if (key.key == 328)
 		ft_map_recalc(glib, '7', -1);
-	if (key.key == 324)		// numeric keyboard 4
+	if (key.key == 324)
 		ft_map_recalc(glib, '4', 10);
-	if (key.key == 325)		// numeric keyboard 5
+	if (key.key == 325)
 		ft_map_recalc(glib, '4', -10);
 }
 

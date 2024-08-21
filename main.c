@@ -6,25 +6,21 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 12:03:55 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/21 09:17:58 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:28:01 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// cmake ./MLX42 -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -B ./MLX42/build
-// make -C ./MLX42/build -j4
-// cc -Wall -Wextra -Werror -g example.c ./MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm -Ofast
-//
 
 // http://fredericgoset.ovh/mathematiques/courbes/en/bresenham_line.html
 
 #include "include/fdf.h"
 
-static int ft_file_correct(char *file)
+static int	ft_file_correct(char *file)
 {
-	int fl;
+	int	fl;
 
 	fl = ft_strlen(file);
-	if (file[fl - 1] != 'f' || file[fl - 2] != 'd' || file[fl - 3] != 'f' || file[fl - 4] != '.')
+	if (file[fl - 1] != 'f' || file[fl - 2] != 'd'
+		|| file[fl - 3] != 'f' || file[fl - 4] != '.')
 		return (0);
 	return (1);
 }
@@ -46,9 +42,9 @@ static void	ft_fdf_run(t_glib *glib)
 
 int32_t	main(int argc, char **argv)
 {
-	char *file;
-	t_glib glib;
+	t_glib	glib;
 	t_map	map;
+	char	*file;
 
 	if (argc != 2)
 		return (EXIT_FAILURE);

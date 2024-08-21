@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 09:14:22 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:27:25 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	ft_map_parse(t_glib *glib, char *file)
 {
 	char	*folder;
 	char	*path;
-	int		f_len;
 	int		fd;
 
 	folder = ft_strdup("./test_maps/");

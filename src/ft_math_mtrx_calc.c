@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:02:33 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 12:05:00 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:34:15 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,20 @@ static void	ft_set_mtrx(float R1[3][3], float res[3][3])
 void	ft_pnt_by_mtrx(t_glib *glib, t_point p, t_point *q)
 {
 	t_change	d;
+	float		nx;
+	float		ny;
+	float		nz;
 
 	d = glib->map->dd;
-	q->x = glib->t_mtrx[0][0] * (p.x * d.dxy) + glib->t_mtrx[0][1] * (p.y * d.dxy) + glib->t_mtrx[0][2] * (p.z * d.dz);
-	q->y = glib->t_mtrx[1][0] * (p.x * d.dxy) + glib->t_mtrx[1][1] * (p.y * d.dxy) + glib->t_mtrx[1][2] * (p.z * d.dz);
-	q->z = glib->t_mtrx[2][0] * (p.x * d.dxy) + glib->t_mtrx[2][1] * (p.y * d.dxy) + glib->t_mtrx[2][2] * (p.z * d.dz);
+	nx = p.x * d.dxy;
+	ny = p.y * d.dxy;
+	nz = p.z * d.dz;
+	q->x = glib->t_mtrx[0][0] * nx + glib->t_mtrx[0][1] * ny;
+	q->x += glib->t_mtrx[0][2] * nz;
+	q->y = glib->t_mtrx[1][0] * nx + glib->t_mtrx[1][1] * ny;
+	q->y += glib->t_mtrx[1][2] * nz;
+	q->z = glib->t_mtrx[2][0] * nx + glib->t_mtrx[2][1] * ny;
+	q->z += glib->t_mtrx[2][2] * nz;
 }
 
 void	ft_mtrx_by_mtrx(float R1[3][3], float R2[3][3])

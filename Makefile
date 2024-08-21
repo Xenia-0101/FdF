@@ -1,6 +1,6 @@
 NAME = fdf
-CFLAGS =  -g
-# CFLAGS = -Wall -Wextra -Werror -g
+# CFLAGS =  -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 RM = rm -rf
 CC = cc
@@ -24,10 +24,10 @@ SRC := \
 		src/ft_fdf_init.c \
 		src/ft_fdf_utils.c \
 		src/ft_map_draw.c \
-		src/ft_map_manip.c \
 		src/ft_map_parse.c \
 		src/ft_map_recalc.c \
 		src/ft_map_transform.c \
+		src/ft_map_utils.c \
 		src/ft_math_bresenham.c \
 		src/ft_math_mtrx_calc.c \
 		src/ft_math_set_mtrx.c \

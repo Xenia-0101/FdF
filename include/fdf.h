@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:16:19 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/21 09:02:23 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:16:44 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_line
 
 // ft_fdf_free.c
 void	ft_fdf_free(t_glib *glib);
+void	ft_free_map_data_s(t_map *map);
 // ft_fdf_init.c
 void	ft_fdf_init_glib(t_glib *glib, t_map *map);
 void	ft_fdf_init_map(t_map *map);

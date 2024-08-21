@@ -6,21 +6,20 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 09:36:53 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 11:54:13 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:16:25 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 void		ft_fdf_free(t_glib *glib);
+void		ft_free_map_data_s(t_map *map);
 static void	ft_free_coors_tr(t_map *map);
 static void	ft_free_coors(t_map *map);
-static void	ft_free_map_data_s(t_map *map);
 
 void	ft_free_map_data_s(t_map *map)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (i < map->rc)
@@ -31,7 +30,7 @@ void	ft_free_map_data_s(t_map *map)
 	free(map->data_s);
 }
 
-void	ft_free_coors(t_map *map)
+static void	ft_free_coors(t_map *map)
 {
 	int	i;
 
@@ -47,7 +46,7 @@ void	ft_free_coors(t_map *map)
 	free(map->coors);
 }
 
-void	ft_free_coors_tr(t_map *map)
+static void	ft_free_coors_tr(t_map *map)
 {
 	int	i;
 
