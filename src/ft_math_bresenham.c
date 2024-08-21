@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_math_bresenham.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 19:30:12 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 15:41:52 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 21:54:13 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ft_bresenham_h(t_glib *glib, t_line *line)
 {
 	while (line->point[0] != line->end[0] + line->dx_sgn)
 	{
-		ft_put_point(glib, line->point);
+		ft_put_point(glib, line->point, line->cc);
 		line->err += line->slope;
 		if (line->err >= 0)
 		{
@@ -64,7 +64,22 @@ static void	ft_bresenham_h(t_glib *glib, t_line *line)
 			line->err += line->err_inc;
 		}
 		line->point[0] += line->dx_sgn;
+		// increase color rgb
+		line->cc.r += line->dc.r;
+		line->cc.g += line->dc.g;
+		line->cc.b += line->dc.b;
+		line->cc.a = 255;
 	}
+}
+
+static void ft_increase_rgb(t_col *c1, t_col c2, t_col c)
+{
+	if (c1->r < c2.r && (c1->r + c.r < 255))
+		c1->r += c.r;
+	if (c1->g < c2.g && (c1->g + c.g < 255))
+		c1->g += c.g;
+	if (c1->b < c2.b && (c1->b + c.b < 255))
+		c1->b += c.b;
 }
 
 /**
@@ -80,7 +95,7 @@ static void	ft_bresenham_v(t_glib *glib, t_line *line)
 {
 	while (line->point[1] != line->end[1] + line->dy_sgn)
 	{
-		ft_put_point(glib, line->point);
+		ft_put_point(glib, line->point, line->cc);
 		line->err += line->slope;
 		if (line->err >= 0)
 		{
@@ -88,6 +103,9 @@ static void	ft_bresenham_v(t_glib *glib, t_line *line)
 			line->err += line->err_inc;
 		}
 		line->point[1] += line->dy_sgn;
+		// increase color rgb
+		ft_increase_rgb(&(line->cc), line->ec, line->dc);
+		line->cc.a = 255;
 	}
 }
 
@@ -125,5 +143,20 @@ static void	ft_init_line(t_line *l, t_point p1, t_point p2)
 		l->err = -l->dy;
 		l->err_inc = -2 * l->dy;
 	}
-	l->dc = sqrt(l->dx * l->dx + l->dy * l->dy);
+	// color data - change in color per point
+	l->cg = sqrt(l->dx * l->dx + l->dy * l->dy);
+	l->dc.r = (p2.c.r - p1.c.r) / l->cg;
+	l->dc.g = (p2.c.g - p1.c.g) / l->cg;
+	l->dc.b = (p2.c.b - p1.c.b) / l->cg;
+	l->dc.a = (p2.c.a - p1.c.a) / l->cg;
+	// color data - color of the current point
+	l->cc.r = p1.c.r;
+	l->cc.g = p1.c.g;
+	l->cc.b = p1.c.b;
+	l->cc.a = p1.c.a;
+	// color data - rgb of the end point
+	l->ec.r = p2.c.r;
+	l->ec.g = p2.c.g;
+	l->ec.b = p2.c.b;
+	l->ec.a = p2.c.a;
 }

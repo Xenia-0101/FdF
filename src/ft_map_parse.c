@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 10:26:16 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 14:53:12 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 22:00:12 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ static void	ft_map_to_point(t_glib *glib)
 			if (map->coors[i][j].z > map->hz)
 				map->hz = map->coors[i][j].z;
 			j++;
+			// printf("%.1f %.1f\n", map->lz, map->hz);
 		}
 		ft_free_row(row, map->rl);
 		i++;

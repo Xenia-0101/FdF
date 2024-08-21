@@ -52,11 +52,10 @@ void	ft_map_transform(t_glib *glib)
 		{
 			ft_pnt_by_mtrx(glib, map->coors[i][j], &(map->coors_tr[i][j]));
 			// printf("z/dz: %.1f\n", map->coors[i][j].z / (map->hz - map->lz));
-			r = map->cc.dr * map->coors[i][j].z / (map->hz - map->lz);
-			g = map->cc.dg * map->coors[i][j].z / (map->hz - map->lz);
-			b = map->cc.db * map->coors[i][j].z / (map->hz - map->lz);
-			a = map->cc.da * map->coors[i][j].z / (map->hz - map->lz);
-			map->coors_tr[i][j].c = ft_get_colour(r, g, b, a);
+			map->coors_tr[i][j].c.r = map->dc.r * map->coors[i][j].z / (map->hz - map->lz);
+			map->coors_tr[i][j].c.g = map->dc.g * map->coors[i][j].z / (map->hz - map->lz);
+			map->coors_tr[i][j].c.b = map->dc.b * map->coors[i][j].z / (map->hz - map->lz);
+			map->coors_tr[i][j].c.a = 255;
 			j++;
 		}
 		i++;

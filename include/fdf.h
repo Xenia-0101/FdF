@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xenia <xenia@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:16:19 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/20 15:41:48 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/08/20 21:59:57 by xenia            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ typedef struct s_change
 
 typedef struct s_col
 {
-	int		dr;
-	int		dg;
-	int		db;
-	int		da;
+	float		r;
+	float		g;
+	float		b;
+	float		a;
 }	t_col;
 
 typedef struct s_point
@@ -44,7 +44,7 @@ typedef struct s_point
 	float	x;
 	float	y;
 	float	z;
-	long	c;
+	t_col	c;
 }	t_point;
 
 typedef struct s_map
@@ -57,7 +57,7 @@ typedef struct s_map
 	int			hz; // highest z
 	long		lc; // colour of lowest z
 	long		hc; // colour of highest z
-	t_col		cc;
+	t_col		dc;
 	// ***
 	int			rl; // row length
 	int			rc; // row count
@@ -93,7 +93,10 @@ typedef struct s_line
 	int		slope;
 	int		err;
 	int		err_inc;
-	int		dc;	// colour gradient
+	float		cg;	// colour gradient
+	t_col	dc;
+	t_col	cc;
+	t_col	ec; // end color
 }	t_line;
 
 // ft_fdf_free.c
@@ -102,9 +105,9 @@ void	ft_fdf_free(t_glib *glib);
 void	ft_fdf_init_glib(t_glib *glib);
 void	ft_fdf_init_map(t_map *map);
 // ft_fdf_utils.c
-void print_rgba(int rgba);
+void	print_rgba(int rgba);
 int		ft_get_colour(int r, int g, int b, int a);
-void	ft_put_point(t_glib *glib, int p[2]);
+void	ft_put_point(t_glib *glib, int p[2], t_col c);
 void	ft_reset_img(t_glib *glib);
 int		ft_count_spaces(char *s);
 //ft_map_draw.c
