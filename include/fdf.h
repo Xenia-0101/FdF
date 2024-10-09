@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 11:16:19 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/21 12:16:44 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:12:29 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ int		ft_abs(int i);
 int		ft_sgn(int i);
 // keyboard_hook.c
 void	keyboard_hook(mlx_key_data_t keydata, void *param);
+// ft_write_msg.c
+void	ft_write_msg(void);
 
 #endif

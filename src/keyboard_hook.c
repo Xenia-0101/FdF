@@ -6,7 +6,7 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 13:53:50 by xvislock          #+#    #+#             */
-/*   Updated: 2024/08/21 11:21:36 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:13:48 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ static void	keyboard_hook_2(mlx_key_data_t key, t_glib *glib)
 		ft_map_recalc(glib, '4', 10);
 	if (key.key == 325)
 		ft_map_recalc(glib, '4', -10);
+	if (key.key == MLX_KEY_H)
+		ft_write_msg();
 }
 
 void	keyboard_hook(mlx_key_data_t key, void *param)
