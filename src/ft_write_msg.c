@@ -6,20 +6,15 @@
 /*   By: xvislock <xvislock@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 16:08:49 by xvislock          #+#    #+#             */
-/*   Updated: 2024/10/09 16:12:00 by xvislock         ###   ########.fr       */
+/*   Updated: 2024/10/09 16:19:32 by xvislock         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void ft_write_msg(void)
+void	ft_write_msg(void)
 {
 	write(1, "\
-\n\
-\033[0;32mThis project is about representing a landscape as a 3D object in which all surfaces are outlined in lines.\033[0m \n\
-\n\
-Things to try: \n\
-\n\
 \033[0;33mleft\033[0m   | move left \n\
 \033[0;33mright\033[0m  | move right \n\
 \033[0;33mup\033[0m     | move up \n\
